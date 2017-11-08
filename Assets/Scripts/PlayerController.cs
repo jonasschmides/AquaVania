@@ -48,8 +48,16 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.W)) rigidBody.velocity += new Vector2(0, fishAccel);
         if (Input.GetKey(KeyCode.S)) rigidBody.velocity -= new Vector2(0, fishAccel);
-        if (Input.GetKey(KeyCode.A)) rigidBody.velocity -= new Vector2(fishAccel, 0);
-        if (Input.GetKey(KeyCode.D)) rigidBody.velocity += new Vector2(fishAccel, 0);
+        if (Input.GetKey(KeyCode.A))
+        {
+            rigidBody.velocity -= new Vector2(fishAccel, 0);
+            if (transform.localScale.x > 0) transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, 1);
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            rigidBody.velocity += new Vector2(fishAccel, 0);
+            if (transform.localScale.x < 0) transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, 1);
+        }
 
         if (rigidBody.velocity.sqrMagnitude > sqrMaxFishSpeed)
         {
@@ -92,9 +100,10 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Powerup"))
         {
-            Powerup type = (Powerup) other.GetComponent("Powerup");
+            Powerup type = (Powerup)other.GetComponent("Powerup");
             Destroy(other.gameObject);
-            switch (type.pType) { 
+            switch (type.pType)
+            {
                 case PowerupType.LEARN_SPEECH:
                     canSpeakUnderwater = true;
                     break;
