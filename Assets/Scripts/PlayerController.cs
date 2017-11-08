@@ -41,6 +41,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+
+
     void DefaultFishControls()
     {
 
@@ -66,7 +68,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        transform.eulerAngles = new Vector3(0, 0, rigidBody.velocity.y*5*Mathf.Sign(rigidBody.velocity.x));
+        transform.eulerAngles = new Vector3(0, 0, rigidBody.velocity.y * 5 * Mathf.Sign(rigidBody.velocity.x));
 
         //"morph test" - einfach ab einer gewissen höhe status auf "Mensch" setzen
         if (transform.position.y > 3)
@@ -84,5 +86,26 @@ public class PlayerController : MonoBehaviour
         //wenn man wieder "unter die grenze kommt", dann wird man wieder zum Fisch
         if (transform.position.y < 2.9)
             morphStatus = MorphStatus.DEFAULT_FISH;
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Powerup"))
+        {
+            Powerup type = (Powerup) other.GetComponent("Powerup");
+            Destroy(other.gameObject);
+            switch (type.pType) { 
+                case PowerupType.LEARN_SPEECH:
+                    canSpeakUnderwater = true;
+                    break;
+                case PowerupType.SHRINK:
+                    transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+                    break;
+                case PowerupType.NONE:
+                default:
+                    Debug.Log("Powerup didn't have any effect");
+                    break;
+            }
+        }
     }
 }
