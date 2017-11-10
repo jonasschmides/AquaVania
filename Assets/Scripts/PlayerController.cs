@@ -22,6 +22,9 @@ public class PlayerController : MonoBehaviour
     //Beispiel für eine "erlernbare Fertigkeit". Sprechen mit Leertaste, wenn TRUE.
     public bool canSpeakUnderwater = false;
 
+    //Blickrichtung
+    private float facingAngle = 0;
+
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
@@ -47,7 +50,7 @@ public class PlayerController : MonoBehaviour
     void DefaultFishControls()
     {
 
-        float facingAngle = 0;
+ 
 
         if (Input.GetKey(KeyCode.W)) rigidBody.velocity += new Vector2(0, fishAccel);
         if (Input.GetKey(KeyCode.S)) rigidBody.velocity -= new Vector2(0, fishAccel);
@@ -105,7 +108,6 @@ public class PlayerController : MonoBehaviour
         {
             Powerup powerUp = (Powerup)other.GetComponent("Powerup");
             powerUp.Collect();
-            //Destroy(other.gameObject);
             switch (powerUp.pType)
             {
                 case PowerupType.LEARN_SPEECH:
@@ -119,6 +121,10 @@ public class PlayerController : MonoBehaviour
                     Debug.Log("Powerup didn't have any effect");
                     break;
             }
+        }else if (other.gameObject.CompareTag("Trigger"))
+        {
+            Trigger trigger = (Trigger)other.GetComponent("Trigger");
+            trigger.Collect();
         }
     }
 }

@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114903826714529736}
   m_Layer: 0
   m_Name: PlayerContainer
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -890,7 +890,7 @@ ParticleSystem:
     m_UseMeshColors: 1
     alignToDirection: 0
     randomDirectionAmount: 0
-    sphericalDirectionAmount: 0
+    sphericalDirectionAmount: 0.09
     randomPositionAmount: 0
     radius:
       value: 0.13474035

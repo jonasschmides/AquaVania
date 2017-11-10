@@ -23,5 +23,4 @@ public class Powerup : MonoBehaviour {
         GetComponent<Collider2D>().enabled = false;
         Destroy(gameObject, clip.length);
     }
-
 }
