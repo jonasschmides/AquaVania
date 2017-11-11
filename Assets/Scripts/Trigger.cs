@@ -24,7 +24,7 @@ public class Trigger : MonoBehaviour
 
     public void Collect()
     {
-        src.PlayOneShot(clip, 0.05f);
+        src.PlayOneShot(clip, 0.2f);
         GetComponent<Renderer>().enabled = false;
         GetComponent<Collider2D>().enabled = false;
         Destroy(gameObject, clip.length);
