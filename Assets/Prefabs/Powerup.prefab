@@ -19,10 +19,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4417883731742806}
+  - component: {fileID: 114154805288369106}
   - component: {fileID: 33265646638401574}
   - component: {fileID: 23641994828753024}
   - component: {fileID: 58879089761084676}
-  - component: {fileID: 114154805288369106}
   - component: {fileID: 82373146359533518}
   m_Layer: 0
   m_Name: Powerup
@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1640830402841550}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.17, y: -0.62, z: 0}
+  m_LocalPosition: {x: 3.901259, y: 1.3788579, z: 1.3671875}
   m_LocalScale: {x: 0.32999998, y: 0.32999998, z: 0.32999998}
   m_Children: []
   m_Father: {fileID: 0}
@@ -107,7 +107,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 99d8b7a396744be45abfe61777b74130, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -189,5 +189,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cefafd6dda1e27489b2131a42e46691, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pType: 1
+  pType: 2
   clip: {fileID: 8300000, guid: 99d8b7a396744be45abfe61777b74130, type: 3}

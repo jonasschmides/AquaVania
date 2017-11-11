@@ -19,10 +19,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4768285021824430}
+  - component: {fileID: 114043550996718448}
   - component: {fileID: 50053280170832822}
   - component: {fileID: 61057132836636534}
   - component: {fileID: 249406651593697072}
-  - component: {fileID: 114043550996718448}
   m_Layer: 0
   m_Name: WaterCurrent
   m_TagString: Untagged
@@ -82,8 +82,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1022316023683072}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 1.58, y: -1.81, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: -6.29, y: -1.97, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4204297941974480}

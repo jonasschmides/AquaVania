@@ -25,6 +25,11 @@ public class PlayerController : MonoBehaviour
     //Blickrichtung
     private float facingAngle = 0;
 
+    private bool isHooked = false;
+    private float hookFree = 0f;
+    private float hookJerk = 0f;
+    private Hook hookRef;
+
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
@@ -37,7 +42,14 @@ public class PlayerController : MonoBehaviour
         switch (morphStatus)
         {
             case MorphStatus.DEFAULT_FISH:
-                DefaultFishControls();
+                if (!isHooked)
+                {
+                    DefaultFishControls();
+                }
+                else
+                {
+                    OnHookControls();
+                }
                 break;
             case MorphStatus.HUMAN:
                 DefaultHumanControls();
@@ -49,8 +61,6 @@ public class PlayerController : MonoBehaviour
 
     void DefaultFishControls()
     {
-
- 
 
         if (Input.GetKey(KeyCode.W)) rigidBody.velocity += new Vector2(0, fishAccel);
         if (Input.GetKey(KeyCode.S)) rigidBody.velocity -= new Vector2(0, fishAccel);
@@ -85,8 +95,29 @@ public class PlayerController : MonoBehaviour
         transform.eulerAngles = new Vector3(0, facingAngle, (rigidBody.velocity.y * 8f));
 
         //"morph test" - einfach ab einer gewissen höhe status auf "Mensch" setzen
-        if (transform.position.y > 3)
+        if (transform.position.y > 3.3)
             morphStatus = MorphStatus.HUMAN;
+    }
+
+    void OnHookControls()
+    {
+        //Debug.Log(hookFree);
+
+        //Spam SPACE key to escape
+        hookFree = Mathf.Max(hookFree - 2f*Time.deltaTime, -5);
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            hookFree += 1;
+            hookJerk = Random.Range(-15, 15);
+        }
+
+        if(hookFree > 0)
+        {
+            isHooked = false;
+            hookRef.Deactivate();
+        }
+        transform.position = new Vector3(hookRef.transform.position.x-0.25f, hookRef.transform.position.y-0.4f);
+        transform.eulerAngles = new Vector3(0, 0, hookJerk+90 + Mathf.Sin(transform.position.y*4)*10);
     }
 
     void DefaultHumanControls()
@@ -98,7 +129,7 @@ public class PlayerController : MonoBehaviour
             rigidBody.velocity -= new Vector2(0, 0.1f);
 
         //wenn man wieder "unter die grenze kommt", dann wird man wieder zum Fisch
-        if (transform.position.y < 2.9)
+        if (transform.position.y < 3.2)
             morphStatus = MorphStatus.DEFAULT_FISH;
     }
 
@@ -125,6 +156,12 @@ public class PlayerController : MonoBehaviour
         {
             Trigger trigger = (Trigger)other.GetComponent("Trigger");
             trigger.Collect();
+        }else if (other.gameObject.CompareTag("Hook") && !isHooked)
+        {
+            hookRef = (Hook) (other.GetComponent("Hook"));
+            hookRef.Activate();
+            isHooked = true;
+            hookFree = -5;
         }
     }
 }

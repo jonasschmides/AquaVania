@@ -19,11 +19,11 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4975420393291802}
+  - component: {fileID: 114076783585011558}
   - component: {fileID: 33896656076652286}
   - component: {fileID: 23250334932593026}
   - component: {fileID: 58012822425364064}
   - component: {fileID: 82096107069333966}
-  - component: {fileID: 114076783585011558}
   m_Layer: 0
   m_Name: Trigger
   m_TagString: Trigger
@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1904713713637364}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.6, y: -2.56, z: 2.734375}
+  m_LocalPosition: {x: 0.06, y: -0.15, z: 4.1015625}
   m_LocalScale: {x: 0.32999998, y: 0.32999998, z: 0.32999998}
   m_Children: []
   m_Father: {fileID: 0}
@@ -190,5 +190,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clip: {fileID: 8300000, guid: 99d8b7a396744be45abfe61777b74130, type: 3}
-  tType: 2
+  tType: 0
   toActivate: []

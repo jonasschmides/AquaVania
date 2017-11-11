@@ -1508,7 +1508,7 @@ Prefab:
     - target: {fileID: 114043550996718448, guid: 7f5446b81b4aad8458bfaec9332314cf,
         type: 2}
       propertyPath: isBarrier
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7f5446b81b4aad8458bfaec9332314cf, type: 2}

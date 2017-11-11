@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Powerup
   - Trigger
+  - Hook
   layers:
   - Default
   - TransparentFX
