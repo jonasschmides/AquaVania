@@ -36,6 +36,7 @@ EDI		1h		Fish physics, Particles
 EDI		2h		Basic obstacles, Collectibles, Collision SFX
 EDI		3h		Triggers, Animated obstacles, Waypoints, Water currents
 EDI		1h		Fishing hooks
+EDI		0.5h	Added basic Credits and Controls screen, Report file
 
 
 ## Problems and Challenges
