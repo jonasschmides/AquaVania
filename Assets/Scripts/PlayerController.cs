@@ -22,6 +22,9 @@ public class PlayerController : MonoBehaviour
     //Beispiel für eine "erlernbare Fertigkeit". Sprechen mit Leertaste, wenn TRUE.
     public bool canSpeakUnderwater = false;
 
+	//Animator
+	public Animator animator;
+
     //Blickrichtung
     private float facingAngle = 0;
 
@@ -55,6 +58,9 @@ public class PlayerController : MonoBehaviour
                 DefaultHumanControls();
                 break;
         }
+
+		//Code für animator
+		animator.SetFloat("speed", Mathf.Abs(rigidBody.velocity.x / maxFishSpeed));
     }
 
 
@@ -95,8 +101,8 @@ public class PlayerController : MonoBehaviour
         transform.eulerAngles = new Vector3(0, facingAngle, (rigidBody.velocity.y * 8f));
 
         //"morph test" - einfach ab einer gewissen höhe status auf "Mensch" setzen
-        if (transform.position.y > 3.3)
-            morphStatus = MorphStatus.HUMAN;
+        //if (transform.position.y > 3.3)
+        //    morphStatus = MorphStatus.HUMAN;
     }
 
     void OnHookControls()
@@ -134,34 +140,44 @@ public class PlayerController : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Powerup"))
-        {
-            Powerup powerUp = (Powerup)other.GetComponent("Powerup");
-            powerUp.Collect();
-            switch (powerUp.pType)
-            {
-                case PowerupType.LEARN_SPEECH:
-                    canSpeakUnderwater = true;
-                    break;
-                case PowerupType.SHRINK:
-                    transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
-                    break;
-                case PowerupType.NONE:
-                default:
-                    Debug.Log("Powerup didn't have any effect");
-                    break;
-            }
-        }else if (other.gameObject.CompareTag("Trigger"))
-        {
-            Trigger trigger = (Trigger)other.GetComponent("Trigger");
-            trigger.Collect();
-        }else if (other.gameObject.CompareTag("Hook") && !isHooked)
-        {
-            hookRef = (Hook) (other.GetComponent("Hook"));
-            hookRef.Activate();
-            isHooked = true;
-            hookFree = -5;
-        }
-    }
+	{
+		if (other.gameObject.CompareTag ("Powerup")) {
+			Powerup powerUp = (Powerup)other.GetComponent ("Powerup");
+			powerUp.Collect ();
+			switch (powerUp.pType) {
+			case PowerupType.LEARN_SPEECH:
+				canSpeakUnderwater = true;
+				break;
+			case PowerupType.SHRINK:
+				transform.localScale = new Vector3 (0.7f, 0.7f, 0.7f);
+				break;
+			case PowerupType.NONE:
+			default:
+				Debug.Log ("Powerup didn't have any effect");
+				break;
+			}
+		} else if (other.gameObject.CompareTag ("Trigger")) {
+			Trigger trigger = (Trigger)other.GetComponent ("Trigger");
+			trigger.Collect ();
+		} else if (other.gameObject.CompareTag ("Hook") && !isHooked) {
+			hookRef = (Hook)(other.GetComponent ("Hook"));
+			hookRef.Activate ();
+			isHooked = true;
+			hookFree = -5;
+
+			//Change to on trigger exit
+		}
+	}
+
+	void OnTriggerExit2D(Collider2D other)
+	{
+		if (other.gameObject.CompareTag ("WaterLevel")) {
+			morphStatus = MorphStatus.DEFAULT_FISH;
+			animator.SetBool ("isHuman", false);
+		} else if (other.gameObject.CompareTag ("GroundLevel")) {
+			morphStatus = MorphStatus.HUMAN;
+			animator.SetBool ("isHuman", true);
+
+		}
+	}
 }

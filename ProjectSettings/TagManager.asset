@@ -7,6 +7,8 @@ TagManager:
   - Powerup
   - Trigger
   - Hook
+  - WaterLevel
+  - GroundLevel
   layers:
   - Default
   - TransparentFX
