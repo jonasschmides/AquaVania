@@ -9,6 +9,8 @@ TagManager:
   - Hook
   - WaterLevel
   - GroundLevel
+  - Carryable
+  - AcceptsObject
   layers:
   - Default
   - TransparentFX
