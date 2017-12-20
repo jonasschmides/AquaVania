@@ -28,15 +28,16 @@ WASD	Basic Movement
 - How well did you manage to stay within the time budget and why.
 - Who did what in the assignment
 
-EDI		2h		OST (Intro, Level 1)
-J/E		3h		Paper prototyping, inspiration, discussing story, challenges and the "world" as a collection of levels
-JONAS	1h		Setting up GIT repository, and initial project file
-EDI		1h		Testlevel, Lighting, Basic materials
-EDI		1h		Fish physics, Particles
-EDI		2h		Basic obstacles, Collectibles, Collision SFX
-EDI		3h		Triggers, Animated obstacles, Waypoints, Water currents
-EDI		1h		Fishing hooks
-EDI		0.5h	Added basic Credits and Controls screen, Report file
+- EDI		2h		OST (Intro, Level 1)
+- J/E		3h		Paper prototyping, inspiration, discussing story, challenges and the "world" as a collection of levels
+- JONAS	1h		Setting up GIT repository, and initial project file
+- EDI		1h		Testlevel, Lighting, Basic materials
+- EDI		1h		Fish physics, Particles
+- EDI		2h		Basic obstacles, Collectibles, Collision SFX
+- EDI		3h		Triggers, Animated obstacles, Waypoints, Water currents
+- EDI		1h		Fishing hooks
+- EDI		0.5h	Added basic Credits and Controls screen, Report file
+- EDI   2h    Working on object carry / deploy code
 
 
 ## Problems and Challenges
