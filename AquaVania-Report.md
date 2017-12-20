@@ -40,12 +40,11 @@ EDI		0.5h	Added basic Credits and Controls screen, Report file
 
 
 ## Problems and Challenges
-==
 There was a problem trying to use objects with interfaces as components.
 The editor just didn't provide the opportunity to drag objects into the script.
 Solution: Accept "GameObject" and cast it to the interface to ensure available functionality.
-==
 
 ## Resources, Sources, References and Links
-Links to all resources, sources you are using. Don't try to reinvent the wheel and be smart about what you build and what you use from others, but never forget to document it accordingly. If you use something and don't document it, its plagiarism!
+### Links to all resources, sources you are using. 
+
 Idea to use waypoints for movement (heavily adapted) - https://answers.unity.com/questions/429623/enemy-movement-from-waypoint-to-waypoint.html
