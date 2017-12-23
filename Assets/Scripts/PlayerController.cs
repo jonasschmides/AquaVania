@@ -24,8 +24,13 @@ public class PlayerController : MonoBehaviour
     //Beispiel für eine "erlernbare Fertigkeit". Sprechen mit Leertaste, wenn TRUE.
     public bool canSpeakUnderwater = false;
 
+    //Derzeit default auf true, eventuell auch erlernbar
     public bool canGrabItems = true;
     public GameObject grabbedItemOrigin;
+
+    private GameObject _carryRef;
+    private GameObject _touchedAccepterRef = null;
+    private GameObject _touchedCarryableRef = null;
 
     //Animator
     [CanBeNull] public Animator animator = null;
@@ -38,8 +43,6 @@ public class PlayerController : MonoBehaviour
     private float hookJerk = 0f;
     private Hook hookRef;
 
-    //Evtl. neue Klasse für Carryable anlegen
-    private GameObject carryRef;
 
     void Start()
     {
@@ -53,14 +56,8 @@ public class PlayerController : MonoBehaviour
         switch (morphStatus)
         {
             case MorphStatus.DEFAULT_FISH:
-                if (!isHooked)
-                {
-                    DefaultFishControls();
-                }
-                else
-                {
-                    OnHookControls();
-                }
+                if (!isHooked) { DefaultFishControls(); }
+                else { FishOnHookControls(); }
                 break;
             case MorphStatus.HUMAN:
                 DefaultHumanControls();
@@ -68,15 +65,17 @@ public class PlayerController : MonoBehaviour
         }
 
         //Update carried obj. position
-        carryRef.transform.position = grabbedItemOrigin.transform.position;
+        if (_carryRef != null)
+        {
+            _carryRef.transform.position = grabbedItemOrigin.transform.position;
+        }
 
         //Code für animator
-        animator.SetFloat("speed", Mathf.Abs(rigidBody.velocity.x / maxFishSpeed));
-
-
+        if (animator != null)
+        {
+            animator.SetFloat("speed", Mathf.Abs(rigidBody.velocity.x / maxFishSpeed));
+        }
     }
-
-
 
     void DefaultFishControls()
     {
@@ -101,17 +100,14 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Space))
         {
-            if (canSpeakUnderwater)
-            {
-                Debug.Log("I am a fish.");
-            }
-            else
-            {
-                Debug.Log("Blub.");
-            }
+            if (canSpeakUnderwater) { Debug.Log("I am a fish."); }
+            else { Debug.Log("Blub."); }
         }
 
-
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            HandleCarryableObject();
+        }
 
         transform.eulerAngles = new Vector3(0, facingAngle, (rigidBody.velocity.y * 8f));
 
@@ -120,9 +116,9 @@ public class PlayerController : MonoBehaviour
         //    morphStatus = MorphStatus.HUMAN;
     }
 
-    void OnHookControls()
+    void FishOnHookControls()
     {
-        //Debug.Log(hookFree);
+        //Debug.Log(hookFree); // log escape status
 
         //Spam SPACE key to escape
         hookFree = Mathf.Max(hookFree - 2f * Time.deltaTime, -5);
@@ -152,42 +148,36 @@ public class PlayerController : MonoBehaviour
         //wenn man wieder "unter die grenze kommt", dann wird man wieder zum Fisch
         if (transform.position.y < 3.2)
             morphStatus = MorphStatus.DEFAULT_FISH;
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            HandleCarryableObject();
+        }
     }
 
-    void OnTriggerStay2D(Collider2D other)
+    void HandleCarryableObject()
     {
-        if (Input.GetKeyDown(KeyCode.C))
+        if (!canGrabItems) return;
+
+        if (_touchedAccepterRef != null)
         {
-            if (other.gameObject.CompareTag("AcceptsObject"))
-            {
-                if (carryRef != null)
-                {
-                    other.gameObject.GetComponent<ObjectAccepter>().Hold(carryRef);
-                    carryRef = null;
-                }
-                else
-                {
-                    carryRef = other.gameObject.GetComponent<ObjectAccepter>().GetItemRefBeforeRelease();
-                    other.gameObject.GetComponent<ObjectAccepter>().Release();
-                }
-            }
+            GameObject prevAccepterItem = _touchedAccepterRef.gameObject.GetComponent<ObjectAccepter>().GetItemRefBeforeRelease();
+            _touchedAccepterRef.gameObject.GetComponent<ObjectAccepter>().Release();
+            _touchedAccepterRef.gameObject.GetComponent<ObjectAccepter>().Hold(_carryRef);
+            _carryRef = prevAccepterItem;
         }
 
-        if (Input.GetKeyUp(KeyCode.C))
+        if (_touchedCarryableRef && !_touchedAccepterRef)
         {
-            if (other.gameObject.CompareTag("Carryable"))
+            if (_carryRef == null)
             {
-                if (canGrabItems && carryRef == null)
-                {
-                    carryRef = other.gameObject;
-                }
-                else
-                {
-                    carryRef = null;
-                }
+                _carryRef = _touchedCarryableRef.gameObject;
+            }
+            else
+            {
+                _carryRef = null;
             }
         }
-
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -221,9 +211,10 @@ public class PlayerController : MonoBehaviour
             hookRef.Activate();
             isHooked = true;
             hookFree = -5;
-
-            //Change to on trigger exit
         }
+
+        if (other.gameObject.CompareTag("AcceptsObject")) _touchedAccepterRef = other.gameObject;
+        if (other.gameObject.CompareTag("Carryable")) _touchedCarryableRef = other.gameObject;
     }
 
     void OnTriggerExit2D(Collider2D other)
@@ -239,5 +230,9 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("isHuman", true);
 
         }
+
+        if (other.gameObject.CompareTag("AcceptsObject")) _touchedAccepterRef = null;
+        if (other.gameObject.CompareTag("Carryable")) _touchedCarryableRef = null;
+        if (_carryRef != null) _touchedCarryableRef = _carryRef;
     }
 }

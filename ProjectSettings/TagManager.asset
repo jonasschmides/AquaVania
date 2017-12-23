@@ -11,6 +11,7 @@ TagManager:
   - GroundLevel
   - Carryable
   - AcceptsObject
+  - InAccepter
   layers:
   - Default
   - TransparentFX

@@ -2,13 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectAccepter : MonoBehaviour
+public class ObjectAccepter : Activatable
 {
     public GameObject objOrigin;
-
     public GameObject marker;
-
-    private bool _isHolding;
 
     private readonly Color _colorHolding = Color.green;
     private readonly Color _colorInactive = Color.red;
@@ -22,10 +19,13 @@ public class ObjectAccepter : MonoBehaviour
 
     public void Hold(GameObject obj)
     {
-        _isHolding = true;
-        _itemRef = obj;
-        obj.transform.position = objOrigin.transform.position;
-        marker.gameObject.GetComponent<Renderer>().material.color = _colorHolding;
+        if (obj != null)
+        {
+            obj.transform.position = objOrigin.transform.position;
+            _itemRef = obj;
+            marker.gameObject.GetComponent<Renderer>().material.color = _colorHolding;
+            Activate();
+        }
     }
 
     public GameObject GetItemRefBeforeRelease()
@@ -35,8 +35,8 @@ public class ObjectAccepter : MonoBehaviour
 
     public void Release()
     {
-        _isHolding = false;
         marker.gameObject.GetComponent<Renderer>().material.color = _colorInactive;
         _itemRef = null;
+        Deactivate();
     }
 }

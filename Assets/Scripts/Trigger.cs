@@ -5,17 +5,12 @@ using UnityEngine;
 
 public enum TriggerType { ON, OFF, TOGGLE };
 
-public class Trigger : MonoBehaviour
+public class Trigger : Activatable
 {
-
     private AudioSource src;
     public AudioClip clip;
 
     public TriggerType tType;
-    public Transform[] toActivate;
-
-    private List<IActivatable> _toActivate;
-
 
     void Awake()
     {
@@ -29,17 +24,14 @@ public class Trigger : MonoBehaviour
         GetComponent<Collider2D>().enabled = false;
         Destroy(gameObject, clip.length);
 
-
-
         switch (tType)
         {
-
             case TriggerType.ON:
                 foreach (var i in toActivate)
                 {
-                    IActivatable j = (IActivatable)i.GetComponent("IActivatable");
+                    Activatable j = (Activatable)i.GetComponent("Activatable");
                     if (j == null)
-                        Debug.LogError("Object is not IActivatable!");
+                        Debug.LogError("Object is not Activatable!");
                     else
                         j.Activate();
                 }
@@ -47,9 +39,9 @@ public class Trigger : MonoBehaviour
             case TriggerType.OFF:
                 foreach (var i in toActivate)
                 {
-                    IActivatable j = (IActivatable)i.GetComponent("IActivatable");
+                    Activatable j = (Activatable)i.GetComponent("Activatable");
                     if (j == null)
-                        Debug.LogError("Object is not IActivatable!");
+                        Debug.LogError("Object is not Activatable!");
                     else
                         j.Deactivate();
                 }
@@ -58,9 +50,9 @@ public class Trigger : MonoBehaviour
             default:
                 foreach (var i in toActivate)
                 {
-                    IActivatable j = (IActivatable)i.GetComponent("IActivatable");
+                    Activatable j = (Activatable)i.GetComponent("Activatable");
                     if (j == null)
-                        Debug.LogError("Object is not IActivatable!");
+                        Debug.LogError("Object is not Activatable!");
                     else
                         j.Toggle();
                 }

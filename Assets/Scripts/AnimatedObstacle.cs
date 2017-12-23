@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnimatedObstacle : MonoBehaviour, IActivatable
+public class AnimatedObstacle : Activatable
 {
     public float[] waypointDurations;
     public Transform[] waypoints;
     public bool doesLoop;
-    public bool isActive;
-
 
     private int wpIndex = 0;
 
@@ -59,20 +57,5 @@ public class AnimatedObstacle : MonoBehaviour, IActivatable
             }
 
         }
-    }
-
-    public void Activate()
-    {
-        isActive = true;
-    }
-
-    public void Deactivate()
-    {
-        isActive = false;
-    }
-
-    public void Toggle()
-    {
-        isActive = !isActive;
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hook : MonoBehaviour, IActivatable
+public class Hook : Activatable
 {
 
     public bool isReelingIn = false;
@@ -46,22 +46,21 @@ public class Hook : MonoBehaviour, IActivatable
     }
 
 
-    public void Activate()
+    public override void Activate()
     {
         isReelingIn = true;
         aSrc.Play();
     }
 
-    public void Deactivate()
+    public override void Deactivate()
     {
         isReelingIn = false;
         aSrc.Stop();
 
     }
 
-    public void Toggle()
+    public override void Toggle()
     {
         throw new System.NotImplementedException();
     }
-
 }

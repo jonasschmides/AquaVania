@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaterCurrent : MonoBehaviour, IActivatable
+public class WaterCurrent : Activatable
 {
 
     public bool isEmitter;
@@ -38,7 +38,7 @@ public class WaterCurrent : MonoBehaviour, IActivatable
 
     }
 
-    public void Activate()
+    public override void Activate()
     {
         bubbles.Play();
         barrier.enabled = true;
@@ -46,14 +46,14 @@ public class WaterCurrent : MonoBehaviour, IActivatable
 
     }
 
-    public void Deactivate()
+    public override void Deactivate()
     {
         bubbles.Stop();
         barrier.enabled = false;
         effector.enabled = false;
     }
 
-    public void Toggle()
+    public override void Toggle()
     {
         if (bubbles.isPlaying)
             bubbles.Stop();
