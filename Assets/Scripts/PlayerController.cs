@@ -42,6 +42,8 @@ public class PlayerController : MonoBehaviour
     //Blickrichtung
     private float facingAngle = 0;
 
+    private bool _isGrounded = true;
+
     private bool isHooked = false;
     private float hookFree = 0f;
     private float hookJerk = 0f;
@@ -97,10 +99,15 @@ public class PlayerController : MonoBehaviour
             case MorphStatus.DEFAULT_FISH:
                 FishForm.SetActive(true);
                 HumanForm.SetActive(false);
+                rigidBody.gravityScale = 0;
+                rigidBody.drag = 3;
                 break;
             case MorphStatus.HUMAN:
                 FishForm.SetActive(false);
                 HumanForm.SetActive(true);
+                rigidBody.velocity = new Vector3(rigidBody.velocity.x * 1.5f, rigidBody.velocity.y * 3.5f, 0);
+                rigidBody.drag = 8;
+                rigidBody.gravityScale = 4;
                 break;
         }
     }
@@ -141,7 +148,7 @@ public class PlayerController : MonoBehaviour
 
         //"morph test" - einfach ab einer gewissen höhe status auf "Mensch" setzen
         if (transform.position.y > 3.3)
-           SetMorphStatus(MorphStatus.HUMAN);
+            SetMorphStatus(MorphStatus.HUMAN);
     }
 
     void FishOnHookControls()
@@ -167,7 +174,14 @@ public class PlayerController : MonoBehaviour
 
     void DefaultHumanControls()
     {
-        if (Input.GetKey(KeyCode.Space)) Debug.Log("I am human.");
+        if (Input.GetKey(KeyCode.Space) && _isGrounded)
+        {
+            rigidBody.velocity += new Vector2(0, 20);
+            _isGrounded = false;
+        }//Debug.Log("I am human.");
+
+        if (Input.GetKey(KeyCode.A)) rigidBody.velocity -= new Vector2(0.6f, 0);
+        if (Input.GetKey(KeyCode.D)) rigidBody.velocity += new Vector2(0.6f, 0);
 
         //nur test code... einfach mit "S" wieder nach unten
         if (Input.GetKey(KeyCode.S))
@@ -176,12 +190,15 @@ public class PlayerController : MonoBehaviour
         //wenn man wieder "unter die grenze kommt", dann wird man wieder zum Fisch
         if (transform.position.y < 3.2)
             SetMorphStatus(MorphStatus.DEFAULT_FISH);
-            
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             HandleCarryableObject();
         }
+
+        transform.eulerAngles = new Vector3(0, facingAngle, 0);
     }
+
 
     void HandleCarryableObject()
     {
@@ -206,6 +223,11 @@ public class PlayerController : MonoBehaviour
                 _carryRef = null;
             }
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Jumpable")) _isGrounded = true;
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -243,6 +265,9 @@ public class PlayerController : MonoBehaviour
 
         if (other.gameObject.CompareTag("AcceptsObject")) _touchedAccepterRef = other.gameObject;
         if (other.gameObject.CompareTag("Carryable")) _touchedCarryableRef = other.gameObject;
+
+
+      
     }
 
     void OnTriggerExit2D(Collider2D other)
