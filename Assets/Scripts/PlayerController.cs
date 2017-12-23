@@ -4,7 +4,7 @@ using JetBrains.Annotations;
 using UnityEngine;
 // ReSharper disable All
 
-public enum MorphStatus { HUMAN, DEFAULT_FISH };
+public enum MorphStatus { INIT, HUMAN, DEFAULT_FISH };
 
 public class PlayerController : MonoBehaviour
 {
@@ -16,10 +16,14 @@ public class PlayerController : MonoBehaviour
     private float sqrMaxFishSpeed;
 
     //Beschleunigung als Fisch
-    public float fishAccel = 0.5f;
+    public float fishAccel = 0.4f;
 
     //Derzeitiger "MorphStatus" - also der Zustand, in dem sich der Spieler befindet.
-    public MorphStatus morphStatus = MorphStatus.DEFAULT_FISH;
+    private MorphStatus _morphStatus = MorphStatus.INIT;
+    public MorphStatus initStatus = MorphStatus.INIT;
+
+    public GameObject FishForm;
+    public GameObject HumanForm;
 
     //Beispiel für eine "erlernbare Fertigkeit". Sprechen mit Leertaste, wenn TRUE.
     public bool canSpeakUnderwater = false;
@@ -48,12 +52,17 @@ public class PlayerController : MonoBehaviour
     {
         rigidBody = GetComponent<Rigidbody2D>();
         sqrMaxFishSpeed = maxFishSpeed * maxFishSpeed;
+
+        SetMorphStatus(initStatus);
     }
 
     void Update()
     {
-        //Wähle aus den Keycommands, je nach Morphstatus
-        switch (morphStatus)
+        // Morphe character, when notwendig
+        SetMorphStatus(_morphStatus);
+
+        // Wähle aus den Keycommands, je nach Morphstatus
+        switch (_morphStatus)
         {
             case MorphStatus.DEFAULT_FISH:
                 if (!isHooked) { DefaultFishControls(); }
@@ -64,16 +73,35 @@ public class PlayerController : MonoBehaviour
                 break;
         }
 
-        //Update carried obj. position
+        // Update carried obj. position
         if (_carryRef != null)
         {
             _carryRef.transform.position = grabbedItemOrigin.transform.position;
         }
 
-        //Code für animator
+        // Code für animator
         if (animator != null)
         {
             animator.SetFloat("speed", Mathf.Abs(rigidBody.velocity.x / maxFishSpeed));
+        }
+    }
+
+    void SetMorphStatus(MorphStatus newStatus)
+    {
+        if (_morphStatus == newStatus) return;
+        _morphStatus = newStatus;
+
+        switch (newStatus)
+        {
+            default:
+            case MorphStatus.DEFAULT_FISH:
+                FishForm.SetActive(true);
+                HumanForm.SetActive(false);
+                break;
+            case MorphStatus.HUMAN:
+                FishForm.SetActive(false);
+                HumanForm.SetActive(true);
+                break;
         }
     }
 
@@ -112,8 +140,8 @@ public class PlayerController : MonoBehaviour
         transform.eulerAngles = new Vector3(0, facingAngle, (rigidBody.velocity.y * 8f));
 
         //"morph test" - einfach ab einer gewissen höhe status auf "Mensch" setzen
-        //if (transform.position.y > 3.3)
-        //    morphStatus = MorphStatus.HUMAN;
+        if (transform.position.y > 3.3)
+           SetMorphStatus(MorphStatus.HUMAN);
     }
 
     void FishOnHookControls()
@@ -147,8 +175,8 @@ public class PlayerController : MonoBehaviour
 
         //wenn man wieder "unter die grenze kommt", dann wird man wieder zum Fisch
         if (transform.position.y < 3.2)
-            morphStatus = MorphStatus.DEFAULT_FISH;
-
+            SetMorphStatus(MorphStatus.DEFAULT_FISH);
+            
         if (Input.GetKeyDown(KeyCode.E))
         {
             HandleCarryableObject();
@@ -221,12 +249,12 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("WaterLevel"))
         {
-            morphStatus = MorphStatus.DEFAULT_FISH;
+            _morphStatus = MorphStatus.DEFAULT_FISH;
             animator.SetBool("isHuman", false);
         }
         else if (other.gameObject.CompareTag("GroundLevel"))
         {
-            morphStatus = MorphStatus.HUMAN;
+            _morphStatus = MorphStatus.HUMAN;
             animator.SetBool("isHuman", true);
 
         }
