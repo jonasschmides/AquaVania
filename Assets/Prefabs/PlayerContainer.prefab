@@ -29,14 +29,14 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &1070807583035422
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4635953050757384}
   m_Layer: 0
-  m_Name: GroundFish
+  m_Name: GroundFishBack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -178,7 +178,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &1519396181247610
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
@@ -242,6 +242,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1801586027712414
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4152785567836902}
+  m_Layer: 0
+  m_Name: GroundFish
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1862642921087846
 GameObject:
   m_ObjectHideFlags: 1
@@ -286,8 +301,23 @@ Transform:
   - {fileID: 4558360261253476}
   - {fileID: 4170970354670116}
   - {fileID: 4222848669457220}
+  - {fileID: 4152785567836902}
+  - {fileID: 4635953050757384}
   m_Father: {fileID: 4756604706690076}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4152785567836902
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1801586027712414}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.47200012, y: -0.26200008, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4068212517922790}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4170970354670116
 Transform:
@@ -335,11 +365,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1519396181247610}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.011, y: -0.30500007, z: 0}
+  m_LocalPosition: {x: 0.17100015, y: -0.30500007, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4756604706690076}
-  m_RootOrder: 4
+  m_Father: {fileID: 4799303238867326}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4558360261253476
 Transform:
@@ -387,11 +417,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1070807583035422}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.454, y: -0.305, z: 0}
+  m_LocalPosition: {x: -0.45599985, y: -0.30900002, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4756604706690076}
-  m_RootOrder: 3
+  m_Father: {fileID: 4068212517922790}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4658672261180806
 Transform:
@@ -432,8 +462,6 @@ Transform:
   - {fileID: 4068212517922790}
   - {fileID: 4799303238867326}
   - {fileID: 4798842858785992}
-  - {fileID: 4635953050757384}
-  - {fileID: 4342524731732416}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -465,6 +493,7 @@ Transform:
   - {fileID: 4005188809880896}
   - {fileID: 4253832440471986}
   - {fileID: 4613461190639878}
+  - {fileID: 4342524731732416}
   m_Father: {fileID: 4756604706690076}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -863,7 +892,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5300906fa6173e3409b11caad1da1c85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundFish: {fileID: 4635953050757384}
+  groundFish: {fileID: 4152785567836902}
+  groundFishBack: {fileID: 4635953050757384}
   groundHuman: {fileID: 4342524731732416}
   maxFishSpeed: 4
   fishAccel: 0.4

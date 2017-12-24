@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     private GameObject _touchedAccepterRef = null;
     private GameObject _touchedCarryableRef = null;
     public Transform groundFish;
+    public Transform groundFishBack;
     public Transform groundHuman;
 
     //Maximale Geschwindigkeit als Fisch
@@ -66,17 +67,23 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         _isGrounded = Physics2D.Linecast(transform.position, groundHuman.position, 1 << LayerMask.NameToLayer("Ground"));
-        if (_isInWater)
+
+        if (!_isInWater)
         {
-            _rigidBody.gravityScale = 0;
+            _isGrounded = _isGrounded ||
+                   Physics2D.Linecast(transform.position, groundFish.position, 1 << LayerMask.NameToLayer("Ground")) ||
+                   Physics2D.Linecast(transform.position, groundFishBack.position, 1 << LayerMask.NameToLayer("Ground"));
+            _rigidBody.gravityScale = 4;
         }
         else
         {
-            _rigidBody.gravityScale = 4;
+            _rigidBody.gravityScale = 0;
         }
 
         if (_isGrounded)
         {
+            //Debug.Break();
+
             _newStatus = MorphStatus.HUMAN;
             if (animator != null)
                 animator.SetBool("isHuman", true);
@@ -157,8 +164,8 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            if (Input.GetKey(KeyCode.A)) _rigidBody.velocity -= new Vector2(fishAccel / 5, 0);
-            if (Input.GetKey(KeyCode.D)) _rigidBody.velocity += new Vector2(fishAccel / 5, 0);
+            if (Input.GetKey(KeyCode.A)) _rigidBody.velocity -= new Vector2(fishAccel, 0);
+            if (Input.GetKey(KeyCode.D)) _rigidBody.velocity += new Vector2(fishAccel, 0);
 
         }
 
@@ -301,7 +308,7 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("WaterLevel"))
         {
             _isInWater = false;
-            _rigidBody.velocity = new Vector2(_rigidBody.velocity.x * 1.3f, Mathf.Min(12, _rigidBody.velocity.y * 2f));
+            _rigidBody.velocity = new Vector2(_rigidBody.velocity.x, Mathf.Min(12, _rigidBody.velocity.y * 2f));
         }
         if (other.gameObject.CompareTag("AcceptsObject")) _touchedAccepterRef = null;
         if (other.gameObject.CompareTag("Carryable")) _touchedCarryableRef = null;
