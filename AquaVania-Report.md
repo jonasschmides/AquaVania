@@ -44,7 +44,7 @@ WASD	Basic Movement
 ## Problems and Challenges
 There was a problem trying to use objects with interfaces as components.
 The editor just didn't provide the opportunity to drag objects into the script.
-Solution: Accept "GameObject" and cast it to the interface to ensure available functionality.
+Solution: Stopped using interfaces - Abstract objects are the way to go!
 
 ## Resources, Sources, References and Links
 ### Links to all resources, sources you are using. 
