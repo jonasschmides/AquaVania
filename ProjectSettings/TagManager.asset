@@ -8,7 +8,6 @@ TagManager:
   - Trigger
   - Hook
   - WaterLevel
-  - GroundLevel
   - Carryable
   - AcceptsObject
   - Jumpable
