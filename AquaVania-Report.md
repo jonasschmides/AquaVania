@@ -38,6 +38,7 @@ WASD	Basic Movement
 - EDI		1h		Fishing hooks
 - EDI		0.5h	Added basic Credits and Controls screen, Report file
 - EDI   2h    Working on object carry / deploy code
+- EDI   3h    Transformation logic Fish<-->Human, based on ground/water touched.
 
 
 ## Problems and Challenges
