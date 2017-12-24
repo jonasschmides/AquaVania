@@ -8,8 +8,13 @@ public enum MorphStatus { INIT, HUMAN, DEFAULT_FISH };
 
 public class PlayerController : MonoBehaviour
 {
-    //Referenz auf Rigidbody
-    private Rigidbody2D rigidBody;
+    //Referenzen
+    private Rigidbody2D _rigidBody;
+    private GameObject _carryRef;
+    private GameObject _touchedAccepterRef = null;
+    private GameObject _touchedCarryableRef = null;
+    public Transform groundFish;
+    public Transform groundHuman;
 
     //Maximale Geschwindigkeit als Fisch
     public float maxFishSpeed = 4f;
@@ -18,8 +23,9 @@ public class PlayerController : MonoBehaviour
     //Beschleunigung als Fisch
     public float fishAccel = 0.4f;
 
-    //Derzeitiger "MorphStatus" - also der Zustand, in dem sich der Spieler befindet.
+    //"MorphStatus" - also der Zustand, in dem sich der Spieler befindet.
     private MorphStatus _morphStatus = MorphStatus.INIT;
+    private MorphStatus _newStatus = MorphStatus.INIT;
     public MorphStatus initStatus = MorphStatus.INIT;
 
     public GameObject FishForm;
@@ -32,9 +38,7 @@ public class PlayerController : MonoBehaviour
     public bool canGrabItems = true;
     public GameObject grabbedItemOrigin;
 
-    private GameObject _carryRef;
-    private GameObject _touchedAccepterRef = null;
-    private GameObject _touchedCarryableRef = null;
+
 
     //Animator
     [CanBeNull] public Animator animator = null;
@@ -42,7 +46,8 @@ public class PlayerController : MonoBehaviour
     //Blickrichtung
     private float facingAngle = 0;
 
-    private bool _isGrounded = true;
+    private bool _isGrounded;
+    private bool _isInWater;
 
     private bool isHooked = false;
     private float hookFree = 0f;
@@ -52,7 +57,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        rigidBody = GetComponent<Rigidbody2D>();
+        _rigidBody = GetComponent<Rigidbody2D>();
         sqrMaxFishSpeed = maxFishSpeed * maxFishSpeed;
 
         SetMorphStatus(initStatus);
@@ -60,11 +65,27 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        _isGrounded = Physics2D.Linecast(transform.position, groundHuman.position, 1 << LayerMask.NameToLayer("Ground"));
+        if (_isInWater)
+        {
+            _rigidBody.gravityScale = 0;
+        }
+        else
+        {
+            _rigidBody.gravityScale = 4;
+        }
+
+        if (_isGrounded)
+        {
+            _newStatus = MorphStatus.HUMAN;
+            if (animator != null)
+                animator.SetBool("isHuman", true);
+        }
         // Morphe character, when notwendig
-        SetMorphStatus(_morphStatus);
+        SetMorphStatus(_newStatus);
 
         // Wähle aus den Keycommands, je nach Morphstatus
-        switch (_morphStatus)
+        switch (_newStatus)
         {
             case MorphStatus.DEFAULT_FISH:
                 if (!isHooked) { DefaultFishControls(); }
@@ -84,7 +105,7 @@ public class PlayerController : MonoBehaviour
         // Code für animator
         if (animator != null)
         {
-            animator.SetFloat("speed", Mathf.Abs(rigidBody.velocity.x / maxFishSpeed));
+            animator.SetFloat("speed", Mathf.Abs(_rigidBody.velocity.x / maxFishSpeed));
         }
     }
 
@@ -99,38 +120,46 @@ public class PlayerController : MonoBehaviour
             case MorphStatus.DEFAULT_FISH:
                 FishForm.SetActive(true);
                 HumanForm.SetActive(false);
-                rigidBody.gravityScale = 0;
-                rigidBody.drag = 3;
+                //_rigidBody.velocity = new Vector2(_rigidBody.velocity.x * .5f, _rigidBody.velocity.y * .5f);
+                _rigidBody.drag = 3;
                 break;
             case MorphStatus.HUMAN:
                 FishForm.SetActive(false);
                 HumanForm.SetActive(true);
-                rigidBody.velocity = new Vector3(rigidBody.velocity.x * 1.5f, rigidBody.velocity.y * 3.5f, 0);
-                rigidBody.drag = 8;
-                rigidBody.gravityScale = 4;
+                //
+                _rigidBody.drag = 8;
                 break;
         }
     }
 
     void DefaultFishControls()
     {
+        if (_isInWater)
+        {
+            if (Input.GetKey(KeyCode.W)) _rigidBody.velocity += new Vector2(0, fishAccel);
+            if (Input.GetKey(KeyCode.S)) _rigidBody.velocity -= new Vector2(0, fishAccel);
 
-        if (Input.GetKey(KeyCode.W)) rigidBody.velocity += new Vector2(0, fishAccel);
-        if (Input.GetKey(KeyCode.S)) rigidBody.velocity -= new Vector2(0, fishAccel);
-        if (Input.GetKey(KeyCode.A))
-        {
-            rigidBody.velocity -= new Vector2(fishAccel, 0);
-            facingAngle = 180;
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            rigidBody.velocity += new Vector2(fishAccel, 0);
-            facingAngle = 0;
-        }
+            if (Input.GetKey(KeyCode.A))
+            {
+                _rigidBody.velocity -= new Vector2(fishAccel, 0);
+                facingAngle = 180;
+            }
+            if (Input.GetKey(KeyCode.D))
+            {
+                _rigidBody.velocity += new Vector2(fishAccel, 0);
+                facingAngle = 0;
+            }
 
-        if (rigidBody.velocity.sqrMagnitude > sqrMaxFishSpeed)
+            if (_rigidBody.velocity.sqrMagnitude > sqrMaxFishSpeed)
+            {
+                _rigidBody.velocity = _rigidBody.velocity.normalized * maxFishSpeed;
+            }
+        }
+        else
         {
-            rigidBody.velocity = rigidBody.velocity.normalized * maxFishSpeed;
+            if (Input.GetKey(KeyCode.A)) _rigidBody.velocity -= new Vector2(fishAccel / 5, 0);
+            if (Input.GetKey(KeyCode.D)) _rigidBody.velocity += new Vector2(fishAccel / 5, 0);
+
         }
 
         if (Input.GetKey(KeyCode.Space))
@@ -144,11 +173,8 @@ public class PlayerController : MonoBehaviour
             HandleCarryableObject();
         }
 
-        transform.eulerAngles = new Vector3(0, facingAngle, (rigidBody.velocity.y * 8f));
+        transform.eulerAngles = new Vector3(0, facingAngle, (_rigidBody.velocity.y * 8f));
 
-        //"morph test" - einfach ab einer gewissen höhe status auf "Mensch" setzen
-        if (transform.position.y > 3.3)
-            SetMorphStatus(MorphStatus.HUMAN);
     }
 
     void FishOnHookControls()
@@ -176,20 +202,19 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space) && _isGrounded)
         {
-            rigidBody.velocity += new Vector2(0, 20);
-            _isGrounded = false;
+            _rigidBody.velocity = new Vector2(_rigidBody.velocity.x, 20);
         }//Debug.Log("I am human.");
 
-        if (Input.GetKey(KeyCode.A)) rigidBody.velocity -= new Vector2(0.6f, 0);
-        if (Input.GetKey(KeyCode.D)) rigidBody.velocity += new Vector2(0.6f, 0);
-
-        //nur test code... einfach mit "S" wieder nach unten
-        if (Input.GetKey(KeyCode.S))
-            rigidBody.velocity -= new Vector2(0, 0.1f);
-
-        //wenn man wieder "unter die grenze kommt", dann wird man wieder zum Fisch
-        if (transform.position.y < 3.2)
-            SetMorphStatus(MorphStatus.DEFAULT_FISH);
+        if (Input.GetKey(KeyCode.A))
+        {
+            _rigidBody.velocity -= new Vector2(0.6f, 0);
+            facingAngle = 180;
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            _rigidBody.velocity += new Vector2(0.6f, 0);
+            facingAngle = 0;
+        }
 
         if (Input.GetKeyDown(KeyCode.E))
         {
@@ -223,11 +248,6 @@ public class PlayerController : MonoBehaviour
                 _carryRef = null;
             }
         }
-    }
-
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("Jumpable")) _isGrounded = true;
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -266,24 +286,23 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("AcceptsObject")) _touchedAccepterRef = other.gameObject;
         if (other.gameObject.CompareTag("Carryable")) _touchedCarryableRef = other.gameObject;
 
+        if (other.gameObject.CompareTag("WaterLevel"))
+        {
+            _isInWater = true;
+            _newStatus = MorphStatus.DEFAULT_FISH;
+            if (animator != null)
+                animator.SetBool("isHuman", false);
 
-      
+        }
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("WaterLevel"))
         {
-            _morphStatus = MorphStatus.DEFAULT_FISH;
-            animator.SetBool("isHuman", false);
+            _isInWater = false;
+            _rigidBody.velocity = new Vector2(_rigidBody.velocity.x * 1.3f, Mathf.Min(12, _rigidBody.velocity.y * 2f));
         }
-        else if (other.gameObject.CompareTag("GroundLevel"))
-        {
-            _morphStatus = MorphStatus.HUMAN;
-            animator.SetBool("isHuman", true);
-
-        }
-
         if (other.gameObject.CompareTag("AcceptsObject")) _touchedAccepterRef = null;
         if (other.gameObject.CompareTag("Carryable")) _touchedCarryableRef = null;
         if (_carryRef != null) _touchedCarryableRef = _carryRef;
