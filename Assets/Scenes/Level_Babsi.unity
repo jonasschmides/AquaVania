@@ -1781,7 +1781,7 @@ GameObject:
   - component: {fileID: 1775977183}
   - component: {fileID: 1775977182}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: WaterLevel
   m_TagString: WaterLevel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
