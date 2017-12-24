@@ -11,11 +11,18 @@ public class PlayerController : MonoBehaviour
     //Referenzen
     private Rigidbody2D _rigidBody;
     private GameObject _carryRef;
+    private ParticleSystem _bubbleSystem;
     private GameObject _touchedAccepterRef = null;
     private GameObject _touchedCarryableRef = null;
     public Transform groundFish;
     public Transform groundFishBack;
     public Transform groundHuman;
+
+    //Audio
+    public AudioSource audioSrc;
+    public AudioClip sfxGrabItem;
+    public AudioClip sfxPlaceItem;
+    public AudioClip sfxTakeItem;
 
     //Maximale Geschwindigkeit als Fisch
     public float maxFishSpeed = 4f;
@@ -59,9 +66,15 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         _rigidBody = GetComponent<Rigidbody2D>();
+        _bubbleSystem = GetComponent<ParticleSystem>();
         sqrMaxFishSpeed = maxFishSpeed * maxFishSpeed;
 
         SetMorphStatus(initStatus);
+    }
+
+    private void OnParticleCollision(GameObject other)
+    {
+
     }
 
     void Update()
@@ -238,6 +251,11 @@ public class PlayerController : MonoBehaviour
 
         if (_touchedAccepterRef != null)
         {
+            if (_carryRef != null)
+                audioSrc.PlayOneShot(sfxPlaceItem, 0.2f);
+            else
+                audioSrc.PlayOneShot(sfxTakeItem, 0.2f);
+
             GameObject prevAccepterItem = _touchedAccepterRef.gameObject.GetComponent<ObjectAccepter>().GetItemRefBeforeRelease();
             _touchedAccepterRef.gameObject.GetComponent<ObjectAccepter>().Release();
             _touchedAccepterRef.gameObject.GetComponent<ObjectAccepter>().Hold(_carryRef);
@@ -249,6 +267,7 @@ public class PlayerController : MonoBehaviour
             if (_carryRef == null)
             {
                 _carryRef = _touchedCarryableRef.gameObject;
+                audioSrc.PlayOneShot(sfxGrabItem, 0.05f);
             }
             else
             {
