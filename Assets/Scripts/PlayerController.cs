@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
     public AudioClip sfxGrabItem;
     public AudioClip sfxPlaceItem;
     public AudioClip sfxTakeItem;
+    public AudioClip sfxWaterSplash;
+    public AudioClip sfxWaterPlay;
 
     //Maximale Geschwindigkeit als Fisch
     public float maxFishSpeed = 4f;
@@ -247,6 +249,7 @@ public class PlayerController : MonoBehaviour
 
     void HandleCarryableObject()
     {
+        audioSrc.pitch = 1;
         if (!canGrabItems) return;
 
         if (_touchedAccepterRef != null)
@@ -318,7 +321,12 @@ public class PlayerController : MonoBehaviour
             _newStatus = MorphStatus.DEFAULT_FISH;
             if (animator != null)
                 animator.SetBool("isHuman", false);
-
+            if (Mathf.Abs(_rigidBody.velocity.y) > 6)
+            {
+                audioSrc.Stop();
+                audioSrc.pitch = Random.Range(0.95f, 1.1f);
+                audioSrc.PlayOneShot(sfxWaterSplash, -0.02f * _rigidBody.velocity.y);
+            }
         }
     }
 
@@ -328,6 +336,9 @@ public class PlayerController : MonoBehaviour
         {
             _isInWater = false;
             _rigidBody.velocity = new Vector2(_rigidBody.velocity.x, Mathf.Min(12, _rigidBody.velocity.y * 2f));
+            audioSrc.Stop();
+            audioSrc.pitch = Random.Range(0.95f, 1.1f);
+            audioSrc.PlayOneShot(sfxWaterPlay, 0.05f);
         }
         if (other.gameObject.CompareTag("AcceptsObject")) _touchedAccepterRef = null;
         if (other.gameObject.CompareTag("Carryable")) _touchedCarryableRef = null;

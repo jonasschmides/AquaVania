@@ -2204,11 +2204,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114903826714529736, guid: 3b1ec2e4d8b3fb24fa1cf95f9ccb6fb2,
-        type: 2}
-      propertyPath: sfxTakeItem
-      value: 
-      objectReference: {fileID: 8300000, guid: 62d0d3584de0e3044b97508f4bce0526, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3b1ec2e4d8b3fb24fa1cf95f9ccb6fb2, type: 2}
   m_IsPrefabParent: 0
