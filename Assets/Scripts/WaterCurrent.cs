@@ -10,26 +10,13 @@ public class WaterCurrent : Activatable
 
     public GameObject barrierObj;
     public GameObject bubblesObj;
-    private ParticleSystem bubbles;
-    private BoxCollider2D barrier;
-    private AreaEffector2D effector;
+    public ParticleSystem bubbles;
+    public BoxCollider2D barrier;
+    public AreaEffector2D effector;
 
     // Use this for initialization
     void Start()
     {
-        bubbles = bubblesObj.GetComponent<ParticleSystem>();
-        barrier = barrierObj.GetComponent<BoxCollider2D>();
-        effector = GetComponent<AreaEffector2D>();
-
-        /*if (!isBarrier)
-            barrier.enabled = false;
-
-        if (!isEmitter)
-        {
-            bubbles.Stop();
-            effector.enabled = false;
-        }*/
-
         if (isActive)
             Activate();
         else
@@ -47,7 +34,7 @@ public class WaterCurrent : Activatable
         bubbles.Play();
         barrier.enabled = isBarrier;
         effector.enabled = isEmitter;
-
+        isActive = true;
     }
 
     public override void Deactivate()
@@ -55,11 +42,12 @@ public class WaterCurrent : Activatable
         bubbles.Stop();
         barrier.enabled = false;
         effector.enabled = false;
+        isActive = false;
     }
 
     public override void Toggle()
     {
-        if (bubbles.isPlaying)
+        if (isActive)
             Deactivate();
         else
             Activate();
