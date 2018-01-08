@@ -42,6 +42,8 @@ public class GameController : MonoBehaviour {
                     Application.Quit();
                     break;
                 default:
+                    Destroy(bgm);
+                    Destroy(this);
                     LoadLevel("MainMenu");
                     break;
             }

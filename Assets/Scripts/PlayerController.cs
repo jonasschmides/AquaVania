@@ -269,9 +269,9 @@ public class PlayerController : MonoBehaviour
         if (_touchedAccepterRef != null)
         {
             if (_carryRef != null)
-                audioSrc.PlayOneShot(sfxPlaceItem, 0.2f);
+                audioSrc.PlayOneShot(sfxPlaceItem, 0.22f);
             else
-                audioSrc.PlayOneShot(sfxTakeItem, 0.2f);
+                audioSrc.PlayOneShot(sfxTakeItem, 0.22f);
 
             GameObject prevAccepterItem = _touchedAccepterRef.gameObject.GetComponent<ObjectAccepter>().GetItemRefBeforeRelease();
             _touchedAccepterRef.gameObject.GetComponent<ObjectAccepter>().Release();
@@ -284,7 +284,7 @@ public class PlayerController : MonoBehaviour
             if (_carryRef == null)
             {
                 _carryRef = _touchedCarryableRef.gameObject;
-                audioSrc.PlayOneShot(sfxGrabItem, 0.05f);
+                audioSrc.PlayOneShot(sfxGrabItem, 0.1f);
             }
             else
             {
