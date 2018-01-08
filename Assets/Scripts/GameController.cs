@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
 
@@ -26,7 +27,7 @@ public class GameController : MonoBehaviour {
     }
     // Use this for initialization
     void Start () {
-        Debug.Log("Welcome to AquaVania!");
+        //Debug.Log("Welcome to AquaVania!");
 	}
 	
 	// Update is called once per frame
@@ -45,7 +46,7 @@ public class GameController : MonoBehaviour {
                     break;
             }
         }
-	}
+    }
 
     public void LoadLevel(string levelPath)
     {
