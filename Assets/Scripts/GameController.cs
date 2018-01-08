@@ -6,9 +6,10 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
 
-    private AudioSource source;
+    public AudioSource clickSrc;
 
-    public AudioClip btn_click;
+    public GameObject bgm;
+    public AudioSource bgmSrc;
 
     public float warpX, warpY;
 
@@ -22,8 +23,7 @@ public class GameController : MonoBehaviour {
     {
         Instance = this;
         DontDestroyOnLoad(transform.gameObject);
-        source = GetComponent<AudioSource>();
-        source.volume = 0.1f;
+        DontDestroyOnLoad(bgm);
     }
     // Use this for initialization
     void Start () {

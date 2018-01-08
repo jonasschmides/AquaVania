@@ -16,6 +16,8 @@ public class AnimatedObstacle : Activatable
 
     void Awake()
     {
+        if (waypoints.Length == 0) return;
+
         if (waypointDurations.Length != waypoints.Length) Debug.LogError("The duration array must be equally long as the waypoint array");
         transform.position = waypoints[0].position;
     }

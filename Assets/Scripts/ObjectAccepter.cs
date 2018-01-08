@@ -10,11 +10,20 @@ public class ObjectAccepter : Activatable
     private readonly Color _colorHolding = Color.green;
     private readonly Color _colorInactive = Color.red;
 
-    private GameObject _itemRef;
+    public GameObject itemRef;
 
     void Start()
     {
-        marker.gameObject.GetComponent<Renderer>().material.color = _colorInactive;
+        if(itemRef != null)
+        {
+            Hold(itemRef);
+            marker.gameObject.GetComponent<Renderer>().material.color = _colorHolding;
+        }
+        else
+        {
+            marker.gameObject.GetComponent<Renderer>().material.color = _colorInactive;
+        }
+       
     }
 
     public void Hold(GameObject obj)
@@ -22,7 +31,7 @@ public class ObjectAccepter : Activatable
         if (obj != null)
         {
             obj.transform.position = objOrigin.transform.position;
-            _itemRef = obj;
+            itemRef = obj;
             marker.gameObject.GetComponent<Renderer>().material.color = _colorHolding;
             Activate();
         }
@@ -30,13 +39,13 @@ public class ObjectAccepter : Activatable
 
     public GameObject GetItemRefBeforeRelease()
     {
-        return _itemRef;
+        return itemRef;
     }
 
     public void Release()
     {
         marker.gameObject.GetComponent<Renderer>().material.color = _colorInactive;
-        _itemRef = null;
+        itemRef = null;
         Deactivate();
     }
 }

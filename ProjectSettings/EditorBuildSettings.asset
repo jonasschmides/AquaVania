@@ -15,14 +15,17 @@ EditorBuildSettings:
     path: Assets/Scenes/Credits.unity
     guid: 1b6d51943799782438528f8bdc6124b8
   - enabled: 1
+    path: Assets/Scenes/L1-1_OceanTempleBasicMovement_Edi.unity
+    guid: 96d1e76749dfe7246bc077be1813145c
+  - enabled: 1
+    path: Assets/Scenes/L1-2_OceanTempleTriggers_Edi.unity
+    guid: ee4bc06de4264524dbc23578b7940647
+  - enabled: 1
+    path: Assets/Scenes/L1-3_OceanTemplePuzzle_Edi.unity
+    guid: df8529c9d95cfa54f9d53cb73833c4d3
+  - enabled: 1
     path: Assets/Scenes/Level1.unity
     guid: e7c3ed4a159d34ed88e75d59447228f7
-  - enabled: 1
-    path: Assets/Scenes/Level_BasicControls_Edi.unity
-    guid: ebe7fabc29cb07d448ad1062f5129c71
-  - enabled: 1
-    path: Assets/Scenes/Level_Babsi.unity
-    guid: 6015eba6e7b7bf34f98c8d4b0298e8f1
   - enabled: 1
     path: Assets/Scenes/Level_CurrentsChallenge_Edi.unity
     guid: 350fa64c840574445b973c34175dd785

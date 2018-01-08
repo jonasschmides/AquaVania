@@ -563,4 +563,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc1d99d06822bff4c825d834444c921e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isActive: 0
+  toActivate: []
   isReelingIn: 0

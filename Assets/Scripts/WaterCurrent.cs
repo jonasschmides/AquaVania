@@ -21,15 +21,19 @@ public class WaterCurrent : Activatable
         barrier = barrierObj.GetComponent<BoxCollider2D>();
         effector = GetComponent<AreaEffector2D>();
 
-        if (!isBarrier)
+        /*if (!isBarrier)
             barrier.enabled = false;
 
         if (!isEmitter)
         {
             bubbles.Stop();
             effector.enabled = false;
-        }
+        }*/
 
+        if (isActive)
+            Activate();
+        else
+            Deactivate();
     }
 
     // Update is called once per frame
@@ -41,8 +45,8 @@ public class WaterCurrent : Activatable
     public override void Activate()
     {
         bubbles.Play();
-        barrier.enabled = true;
-        effector.enabled = true;
+        barrier.enabled = isBarrier;
+        effector.enabled = isEmitter;
 
     }
 
@@ -56,11 +60,8 @@ public class WaterCurrent : Activatable
     public override void Toggle()
     {
         if (bubbles.isPlaying)
-            bubbles.Stop();
+            Deactivate();
         else
-            bubbles.Play();
-
-        barrier.enabled = !barrier.enabled;
-        effector.enabled = !effector.enabled;
+            Activate();
     }
 }
