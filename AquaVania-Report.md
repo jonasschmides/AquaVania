@@ -11,9 +11,15 @@ Eduard Pranz		if17b025
 Jonas Schmidbauer	ifXX_YYY
 
 ## Controls
-WASD	Basic Movement
-<SPACE>	Perform context-based action
-<ESC>	Back to menu / Quit game
+WASD --	Basic Movement
+
+E -- Grab / Release object
+
+
+<SPACE>	-- Perform context-based action (e.g. Jump)
+  
+  
+<ESC> --	Back to menu / Quit game
 
 ## Gameplay Features
 - Explore the depths as a fish, and the land as a human!
