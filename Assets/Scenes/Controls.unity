@@ -363,7 +363,9 @@ MonoBehaviour:
 
     WASD - Basic movement
 
-    <SPACE> - Action
+    E - Grab / Release object
+
+    <SPACE> - Context-based action (e.g. Jump)
 
     <ESC> - Back to menu / Quit game'
 --- !u!222 &1372661016
