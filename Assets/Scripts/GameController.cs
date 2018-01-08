@@ -9,8 +9,17 @@ public class GameController : MonoBehaviour {
 
     public AudioClip btn_click;
 
+    public float warpX, warpY;
+
+    public static GameController Instance
+    {
+        get;
+        set;
+    }
+
     void Awake()
     {
+        Instance = this;
         DontDestroyOnLoad(transform.gameObject);
         source = GetComponent<AudioSource>();
         source.volume = 0.1f;
@@ -31,8 +40,6 @@ public class GameController : MonoBehaviour {
                 case "MainMenu":
                     Application.Quit();
                     break;
-                case "Level_BasicControls_Edi":
-                case "Level_Babsi":
                 default:
                     LoadLevel("MainMenu");
                     break;

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
-// ReSharper disable All
 
 public enum MorphStatus { INIT, HUMAN, DEFAULT_FISH };
 
@@ -72,12 +71,18 @@ public class PlayerController : MonoBehaviour
         sqrMaxFishSpeed = maxFishSpeed * maxFishSpeed;
 
         SetMorphStatus(initStatus);
+
+        Vector3 warpPos;
+        if (GameController.Instance == null) warpPos = new Vector3(0, 0);
+        else warpPos = new Vector3(GameController.Instance.warpX, GameController.Instance.warpY);
+
+        //using 0/0 as "default start position"
+        if (warpPos.sqrMagnitude != 0)
+        {
+            transform.SetPositionAndRotation(warpPos, transform.rotation);
+        }
     }
 
-    private void OnParticleCollision(GameObject other)
-    {
-
-    }
 
     void Update()
     {
@@ -311,6 +316,14 @@ public class PlayerController : MonoBehaviour
             isHooked = true;
             hookFree = -5;
         }
+        else if (other.gameObject.CompareTag("Warp"))
+        {
+            var warpObj = (WarpArrow)(other.GetComponent(typeof(WarpArrow)));
+
+            GameController.Instance.warpX = warpObj.warpX;
+            GameController.Instance.warpY = warpObj.warpY;
+            GameController.Instance.LoadLevel(warpObj.LevelName);
+        }
 
         if (other.gameObject.CompareTag("AcceptsObject")) _touchedAccepterRef = other.gameObject;
         if (other.gameObject.CompareTag("Carryable")) _touchedCarryableRef = other.gameObject;
@@ -321,7 +334,7 @@ public class PlayerController : MonoBehaviour
             _newStatus = MorphStatus.DEFAULT_FISH;
             if (animator != null)
                 animator.SetBool("isHuman", false);
-            if (Mathf.Abs(_rigidBody.velocity.y) > 6)
+            if (Mathf.Abs(_rigidBody.velocity.y) > 5)
             {
                 audioSrc.Stop();
                 audioSrc.pitch = Random.Range(0.95f, 1.1f);

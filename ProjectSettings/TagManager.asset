@@ -11,6 +11,7 @@ TagManager:
   - Carryable
   - AcceptsObject
   - Jumpable
+  - Warp
   layers:
   - Default
   - TransparentFX
