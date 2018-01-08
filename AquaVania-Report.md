@@ -6,6 +6,8 @@ polluting the sea, utilizing the skills of fish and human forms alike!
 
 ## Group Members
 Eduard Pranz		if17b025
+
+
 Jonas Schmidbauer	ifXX_YYY
 
 ## Controls
@@ -38,13 +40,21 @@ WASD	Basic Movement
 - EDI		1h		Fishing hooks
 - EDI		0.5h	Added basic Credits and Controls screen, Report file
 - EDI   2h    Working on object carry / deploy code
-- EDI   3h    Transformation logic Fish<-->Human, based on ground/water touched.
+- EDI   3h    Transformation logic fish<-->human, based on ground/water touched.
+- EDI   2h    More levels, QOL improvements
+- EDI   3h    Recording more SFX, implementing audio mixer
+- EDI   2h    Code Refactoring, Level "warping", Level title / subtitle / hints
 
 
 ## Problems and Challenges
 There was a problem trying to use objects with interfaces as components.
 The editor just didn't provide the opportunity to drag objects into the script.
 Solution: Stopped using interfaces - Abstract classes are the way to go!
+
+
+
+How do parameters get carried over to another scene?
+There are multiple solutions, but using a static object seemed convenient.
 
 ## Resources, Sources, References and Links
 ### Links to all resources, sources you are using. 
