@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum MorphStatus { INIT, HUMAN, DEFAULT_FISH };
 
@@ -66,6 +67,13 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        //debug
+        if (Application.isEditor && (GameObject.Find("GameController") == null))
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
+        //end debug
+
         _rigidBody = GetComponent<Rigidbody2D>();
         _bubbleSystem = GetComponent<ParticleSystem>();
         sqrMaxFishSpeed = maxFishSpeed * maxFishSpeed;

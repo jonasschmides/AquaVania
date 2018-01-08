@@ -431,6 +431,16 @@ Prefab:
       propertyPath: playerX
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114759371905121014, guid: d8f6c89707bab7b40a4d58e3c5851e04,
+        type: 2}
+      propertyPath: warpX
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114759371905121014, guid: d8f6c89707bab7b40a4d58e3c5851e04,
+        type: 2}
+      propertyPath: warpY
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d8f6c89707bab7b40a4d58e3c5851e04, type: 2}
   m_IsPrefabParent: 0
