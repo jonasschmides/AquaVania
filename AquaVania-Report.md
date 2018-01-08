@@ -16,10 +16,10 @@ WASD --	Basic Movement
 E -- Grab / Release object
 
 
-<SPACE>	-- Perform context-based action (e.g. Jump)
+SPACE	-- Perform context-based action (e.g. Jump)
   
   
-<ESC> --	Back to menu / Quit game
+ESC --	Back to menu / Quit game
 
 ## Gameplay Features
 - Explore the depths as a fish, and the land as a human!
