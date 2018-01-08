@@ -26,9 +26,9 @@ WASD	Basic Movement
 - Audio (SFX and BGM)
 
 ## Time Spent report
-- Where and in what areas did you spend your time. How much time did you use for feature A, B, C, how much for gameplay programming, where did you spend more/less time than anticipated, 
-- How well did you manage to stay within the time budget and why.
-- Who did what in the assignment
+#### Where and in what areas did you spend your time. How much time did you use for feature A, B, C, how much for gameplay programming, where did you spend more/less time than anticipated?
+#### How well did you manage to stay within the time budget and why?
+#### Who did what in the assignment?
 
 - EDI		2h		OST (Intro, Level 1)
 - J/E		3h		Paper prototyping, inspiration, discussing story, challenges and the "world" as a collection of levels
