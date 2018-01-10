@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour
         _bubbleSystem = GetComponent<ParticleSystem>();
         sqrMaxFishSpeed = maxFishSpeed * maxFishSpeed;
 
-        SetMorphStatus(initStatus);
+        _newStatus = initStatus;
 
         Vector3 warpPos;
         if (GameController.Instance == null) warpPos = new Vector3(0, 0);
@@ -141,7 +141,7 @@ public class PlayerController : MonoBehaviour
         // Code für animator
         if (animator != null)
         {
-            animator.SetFloat("speed", Mathf.Abs(_rigidBody.velocity.x / maxFishSpeed));
+            //animator.SetFloat("speed", Mathf.Abs(_rigidBody.velocity.x / maxFishSpeed));
         }
     }
 
@@ -342,7 +342,7 @@ public class PlayerController : MonoBehaviour
             _isInWater = true;
             _newStatus = MorphStatus.DEFAULT_FISH;
             if (animator != null)
-                animator.SetBool("isHuman", false);
+                //animator.SetBool("isHuman", false);
             if (Mathf.Abs(_rigidBody.velocity.y) > 5)
             {
                 audioSrc.Stop();
