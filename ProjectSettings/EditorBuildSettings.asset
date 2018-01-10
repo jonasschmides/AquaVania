@@ -24,6 +24,9 @@ EditorBuildSettings:
     path: Assets/Scenes/L1-3_OceanTemplePuzzle_Edi.unity
     guid: df8529c9d95cfa54f9d53cb73833c4d3
   - enabled: 1
+    path: Assets/Scenes/L2-1_OceanSurfaceIntro.unity
+    guid: 43a1baa32f5f5054383e75e6b827875e
+  - enabled: 1
     path: Assets/Scenes/Level1.unity
     guid: e7c3ed4a159d34ed88e75d59447228f7
   - enabled: 1
