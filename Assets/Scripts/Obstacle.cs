@@ -18,7 +18,7 @@ public class Obstacle : MonoBehaviour
         {
 
             src.pitch = Random.Range(0.9f, 1.3f);
-            src.volume = collision.relativeVelocity.magnitude * 0.15f;
+            src.volume = collision.relativeVelocity.magnitude * 0.12f;
 
             src.PlayOneShot(clip);
         }
