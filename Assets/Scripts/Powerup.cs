@@ -18,7 +18,7 @@ public class Powerup : MonoBehaviour {
 
     public void Collect()
     {
-        src.PlayOneShot(clip, 0.2f);
+        src.PlayOneShot(clip, 1f);
         GetComponent<Renderer>().enabled = false;
         GetComponent<Collider2D>().enabled = false;
         Destroy(gameObject, clip.length);

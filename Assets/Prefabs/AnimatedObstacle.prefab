@@ -19,10 +19,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4017164478238184}
+  - component: {fileID: 114026644205628868}
   - component: {fileID: 33615850182332770}
   - component: {fileID: 23877230223596638}
   - component: {fileID: 61690280230643834}
-  - component: {fileID: 114026644205628868}
   - component: {fileID: 82027874938195016}
   - component: {fileID: 114642240237371448}
   m_Layer: 0
@@ -39,7 +39,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1614338514968024}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.100766, y: -0.43564734, z: 0}
+  m_LocalPosition: {x: 2.8912039, y: 0.1337195, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -117,10 +117,11 @@ AudioSource:
   m_GameObject: {fileID: 1614338514968024}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 243810444028617220, guid: de4bfe1f641cd5b4583137e78d57ccf7,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.07
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -200,10 +201,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 296729b6f0fcf3a43bce6c7246a2f7e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isActive: 0
+  toActivate: []
   waypointDurations: []
   waypoints: []
   doesLoop: 0
-  isActive: 0
 --- !u!114 &114642240237371448
 MonoBehaviour:
   m_ObjectHideFlags: 1

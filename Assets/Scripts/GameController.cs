@@ -2,22 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
 
-    private AudioSource source;
+    public AudioSource clickSrc;
 
-    public AudioClip btn_click;
+    public GameObject bgm;
+    public AudioSource bgmSrc;
+
+    public float warpX, warpY;
+
+    public static GameController Instance
+    {
+        get;
+        set;
+    }
 
     void Awake()
     {
+        Instance = this;
         DontDestroyOnLoad(transform.gameObject);
-        source = GetComponent<AudioSource>();
-        source.volume = 0.1f;
+        DontDestroyOnLoad(bgm);
     }
     // Use this for initialization
     void Start () {
-        Debug.Log("Welcome to AquaVania!");
+        //Debug.Log("Welcome to AquaVania!");
 	}
 	
 	// Update is called once per frame
@@ -31,14 +41,14 @@ public class GameController : MonoBehaviour {
                 case "MainMenu":
                     Application.Quit();
                     break;
-                case "Level_BasicControls_Edi":
-                case "Level_Babsi":
                 default:
+                    Destroy(bgm);
+                    Destroy(this);
                     LoadLevel("MainMenu");
                     break;
             }
         }
-	}
+    }
 
     public void LoadLevel(string levelPath)
     {

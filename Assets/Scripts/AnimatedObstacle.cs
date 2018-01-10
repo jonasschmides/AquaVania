@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnimatedObstacle : MonoBehaviour, IActivatable
+public class AnimatedObstacle : Activatable
 {
     public float[] waypointDurations;
     public Transform[] waypoints;
     public bool doesLoop;
-    public bool isActive;
-
 
     private int wpIndex = 0;
 
@@ -18,6 +16,8 @@ public class AnimatedObstacle : MonoBehaviour, IActivatable
 
     void Awake()
     {
+        if (waypoints.Length == 0) return;
+
         if (waypointDurations.Length != waypoints.Length) Debug.LogError("The duration array must be equally long as the waypoint array");
         transform.position = waypoints[0].position;
     }
@@ -59,20 +59,5 @@ public class AnimatedObstacle : MonoBehaviour, IActivatable
             }
 
         }
-    }
-
-    public void Activate()
-    {
-        isActive = true;
-    }
-
-    public void Deactivate()
-    {
-        isActive = false;
-    }
-
-    public void Toggle()
-    {
-        isActive = !isActive;
     }
 }

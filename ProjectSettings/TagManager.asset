@@ -8,7 +8,10 @@ TagManager:
   - Trigger
   - Hook
   - WaterLevel
-  - GroundLevel
+  - Carryable
+  - AcceptsObject
+  - Jumpable
+  - Warp
   layers:
   - Default
   - TransparentFX
@@ -18,7 +21,7 @@ TagManager:
   - UI
   - 
   - 
-  - GameLayer
+  - Ground
   - 
   - 
   - 

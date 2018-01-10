@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaterCurrent : MonoBehaviour, IActivatable
+public class WaterCurrent : Activatable
 {
 
     public bool isEmitter;
@@ -10,26 +10,17 @@ public class WaterCurrent : MonoBehaviour, IActivatable
 
     public GameObject barrierObj;
     public GameObject bubblesObj;
-    private ParticleSystem bubbles;
-    private BoxCollider2D barrier;
-    private AreaEffector2D effector;
+    public ParticleSystem bubbles;
+    public BoxCollider2D barrier;
+    public AreaEffector2D effector;
 
     // Use this for initialization
     void Start()
     {
-        bubbles = bubblesObj.GetComponent<ParticleSystem>();
-        barrier = barrierObj.GetComponent<BoxCollider2D>();
-        effector = GetComponent<AreaEffector2D>();
-
-        if (!isBarrier)
-            barrier.enabled = false;
-
-        if (!isEmitter)
-        {
-            bubbles.Stop();
-            effector.enabled = false;
-        }
-
+        if (isActive)
+            Activate();
+        else
+            Deactivate();
     }
 
     // Update is called once per frame
@@ -38,29 +29,27 @@ public class WaterCurrent : MonoBehaviour, IActivatable
 
     }
 
-    public void Activate()
+    public override void Activate()
     {
         bubbles.Play();
-        barrier.enabled = true;
-        effector.enabled = true;
-
+        barrier.enabled = isBarrier;
+        effector.enabled = isEmitter;
+        isActive = true;
     }
 
-    public void Deactivate()
+    public override void Deactivate()
     {
         bubbles.Stop();
         barrier.enabled = false;
         effector.enabled = false;
+        isActive = false;
     }
 
-    public void Toggle()
+    public override void Toggle()
     {
-        if (bubbles.isPlaying)
-            bubbles.Stop();
+        if (isActive)
+            Deactivate();
         else
-            bubbles.Play();
-
-        barrier.enabled = !barrier.enabled;
-        effector.enabled = !effector.enabled;
+            Activate();
     }
 }
