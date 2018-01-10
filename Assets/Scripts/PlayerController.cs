@@ -173,10 +173,10 @@ public class PlayerController : MonoBehaviour
 	{
 		if (other.gameObject.CompareTag ("WaterLevel")) {
 			morphStatus = MorphStatus.DEFAULT_FISH;
-			animator.SetBool ("isHuman", false);
+			//animator.SetBool ("isHuman", false);
 		} else if (other.gameObject.CompareTag ("GroundLevel")) {
 			morphStatus = MorphStatus.HUMAN;
-			animator.SetBool ("isHuman", true);
+			//animator.SetBool ("isHuman", true);
 
 		}
 	}
