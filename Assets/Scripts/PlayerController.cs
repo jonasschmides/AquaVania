@@ -365,7 +365,6 @@ public class PlayerController : MonoBehaviour
         {
             _isInWater = false;
             _rigidBody.velocity = new Vector2(_rigidBody.velocity.x, Mathf.Min(15, _rigidBody.velocity.y * 3.5f));
-            Debug.Log(_rigidBody.velocity.y);
             audioSrc.Stop();
             audioSrc.pitch = Random.Range(0.95f, 1.1f);
             audioSrc.PlayOneShot(sfxWaterPlay, 0.07f);
