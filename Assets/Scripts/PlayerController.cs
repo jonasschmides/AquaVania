@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour
     public MorphStatus initStatus = MorphStatus.INIT;
 
     public GameObject FishForm;
+    public GameObject FishCollider;
     public GameObject HumanForm;
 
     //Beispiel für eine "erlernbare Fertigkeit". Sprechen mit Leertaste, wenn TRUE.
@@ -79,6 +80,7 @@ public class PlayerController : MonoBehaviour
         _bubbleSystem = GetComponent<ParticleSystem>();
         sqrMaxFishSpeed = maxFishSpeed * maxFishSpeed;
 
+        SetMorphStatus(initStatus);
         _newStatus = initStatus;
 
         Vector3 warpPos;
@@ -155,12 +157,14 @@ public class PlayerController : MonoBehaviour
             default:
             case MorphStatus.DEFAULT_FISH:
                 FishForm.SetActive(true);
+                FishCollider.SetActive(true);
                 HumanForm.SetActive(false);
                 //_rigidBody.velocity = new Vector2(_rigidBody.velocity.x * .5f, _rigidBody.velocity.y * .5f);
                 _rigidBody.drag = 3;
                 break;
             case MorphStatus.HUMAN:
                 FishForm.SetActive(false);
+                FishCollider.SetActive(false);
                 HumanForm.SetActive(true);
                 //
                 _rigidBody.drag = 8;
@@ -210,6 +214,7 @@ public class PlayerController : MonoBehaviour
         }
 
         transform.eulerAngles = new Vector3(0, facingAngle, (_rigidBody.velocity.y * 8f));
+        FishCollider.transform.eulerAngles = new Vector3(0, 0, 90);
 
     }
 
@@ -238,7 +243,8 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space) && _isGrounded)
         {
-            _rigidBody.velocity = new Vector2(_rigidBody.velocity.x, 20);
+            _isGrounded = false;
+            _rigidBody.velocity = new Vector2(_rigidBody.velocity.x, 25);
         }//Debug.Log("I am human.");
 
         if (Input.GetKey(KeyCode.A))
@@ -343,25 +349,28 @@ public class PlayerController : MonoBehaviour
             _newStatus = MorphStatus.DEFAULT_FISH;
             if (animator != null)
                 //animator.SetBool("isHuman", false);
-            if (Mathf.Abs(_rigidBody.velocity.y) > 5)
-            {
-                audioSrc.Stop();
-                audioSrc.pitch = Random.Range(0.95f, 1.1f);
-                audioSrc.PlayOneShot(sfxWaterSplash, -0.02f * _rigidBody.velocity.y);
-            }
+                if (Mathf.Abs(_rigidBody.velocity.y) > 5)
+                {
+                    audioSrc.Stop();
+                    audioSrc.pitch = Random.Range(0.95f, 1.1f);
+                    audioSrc.PlayOneShot(sfxWaterSplash, -0.03f * _rigidBody.velocity.y);
+                }
         }
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("WaterLevel"))
+
+        if (other.gameObject.CompareTag("WaterLevel") && _isInWater)
         {
             _isInWater = false;
-            _rigidBody.velocity = new Vector2(_rigidBody.velocity.x, Mathf.Min(12, _rigidBody.velocity.y * 2f));
+            _rigidBody.velocity = new Vector2(_rigidBody.velocity.x, Mathf.Min(15, _rigidBody.velocity.y * 3.5f));
+            Debug.Log(_rigidBody.velocity.y);
             audioSrc.Stop();
             audioSrc.pitch = Random.Range(0.95f, 1.1f);
-            audioSrc.PlayOneShot(sfxWaterPlay, 0.05f);
+            audioSrc.PlayOneShot(sfxWaterPlay, 0.07f);
         }
+
         if (other.gameObject.CompareTag("AcceptsObject")) _touchedAccepterRef = null;
         if (other.gameObject.CompareTag("Carryable")) _touchedCarryableRef = null;
         if (_carryRef != null) _touchedCarryableRef = _carryRef;

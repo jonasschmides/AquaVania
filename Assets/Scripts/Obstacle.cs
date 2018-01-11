@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
-
     public AudioClip clip;
     private AudioSource src;
 
@@ -12,15 +11,16 @@ public class Obstacle : MonoBehaviour
     {
         src = GetComponent<AudioSource>();
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))
         {
 
             src.pitch = Random.Range(0.9f, 1.3f);
-            src.volume = collision.relativeVelocity.magnitude * 0.12f;
+            src.volume = other.relativeVelocity.magnitude * 0.12f;
 
             src.PlayOneShot(clip);
         }
     }
+
 }

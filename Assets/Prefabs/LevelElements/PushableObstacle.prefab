@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 61844221165405444}
   - component: {fileID: 50078388186410818}
   - component: {fileID: 82987560974562036}
-  - component: {fileID: 114628176572908394}
+  - component: {fileID: 114450937386754122}
   m_Layer: 0
   m_Name: PushableObstacle
   m_TagString: Untagged
@@ -39,7 +39,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1226092412877008}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.18, y: -0.35, z: 0}
+  m_LocalPosition: {x: -1.84, y: 1.72, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -210,7 +210,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &114628176572908394
+--- !u!114 &114450937386754122
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -218,7 +218,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1226092412877008}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74bd9d7c18eadcf4baaaa8013d0642ed, type: 3}
+  m_Script: {fileID: 11500000, guid: f962caa6b693a9741ac7fd3c929968a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   clip: {fileID: 8300000, guid: 29b8b936d839b48458ee4f890ef7d7c9, type: 3}
+  rigidBody: {fileID: 50078388186410818}
+  src: {fileID: 82987560974562036}

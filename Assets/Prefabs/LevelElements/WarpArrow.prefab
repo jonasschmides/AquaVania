@@ -327,5 +327,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LevelName: 
-  playerX: 0
-  playerY: 0
+  warpX: 0
+  warpY: 0
