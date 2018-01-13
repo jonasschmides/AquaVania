@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -14,9 +13,19 @@ public class PlayerController : MonoBehaviour
     private ParticleSystem _bubbleSystem;
     private GameObject _touchedAccepterRef = null;
     private GameObject _touchedCarryableRef = null;
+
+    public Animator animatorHuman;
+    public Animator animatorFish;
+
     public Transform groundFish;
     public Transform groundFishBack;
     public Transform groundHuman;
+
+    public GameObject airMeterCanvasHolder;
+    public GameObject[] airMeter;
+    private float timePerImage;
+    private float maxAirTime = 20f;
+    private float airTime;
 
     //Audio
     public AudioSource audioSrc;
@@ -49,15 +58,6 @@ public class PlayerController : MonoBehaviour
     public bool canGrabItems = true;
     public GameObject grabbedItemOrigin;
 
-
-
-    //Animators
-    public Animator animatorHuman;
-    //public SpriteRenderer spriteRendererHuman;
-
-    public Animator animatorFish;
-    //public SpriteRenderer spriteRendererFish;
-
     //Blickrichtung
     private float facingAngle = 0;
 
@@ -72,6 +72,9 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        timePerImage = maxAirTime / airMeter.Length;
+        airTime = maxAirTime;
+
         //debug
         if (Application.isEditor && (GameObject.Find("GameController") == null))
         {
@@ -109,11 +112,39 @@ public class PlayerController : MonoBehaviour
                    Physics2D.Linecast(transform.position, groundFish.position, 1 << LayerMask.NameToLayer("Ground")) ||
                    Physics2D.Linecast(transform.position, groundFishBack.position, 1 << LayerMask.NameToLayer("Ground"));
             _rigidBody.gravityScale = 4;
+            airTime -= Time.deltaTime;
+           
         }
         else
         {
+            airTime += Time.deltaTime*6;
+            airTime = Mathf.Min(airTime, maxAirTime);
+          
             _rigidBody.gravityScale = 0;
         }
+
+        if (airTime >= maxAirTime)
+        {
+            airMeterCanvasHolder.SetActive(false);
+        }
+        else
+        {
+            airMeterCanvasHolder.SetActive(true);
+           // var hideAt = timePerImage;
+            for (int i = 0; i < airMeter.Length; i++)
+            {
+                if(timePerImage * i >= airTime)
+                {
+                    airMeter[i].SetActive(false);
+                }
+                else
+                {
+                    airMeter[i].SetActive(true);
+                }
+            }
+        }
+
+       
 
         if (_isGrounded)
         {
