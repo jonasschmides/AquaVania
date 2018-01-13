@@ -51,9 +51,12 @@ public class PlayerController : MonoBehaviour
 
 
 
-    //Animator
+    //Animators
     public Animator animatorHuman;
-    public SpriteRenderer spriteRendererHuman;
+    //public SpriteRenderer spriteRendererHuman;
+
+    public Animator animatorFish;
+    //public SpriteRenderer spriteRendererFish;
 
     //Blickrichtung
     private float facingAngle = 0;
@@ -195,6 +198,15 @@ public class PlayerController : MonoBehaviour
             {
                 _rigidBody.velocity = _rigidBody.velocity.normalized * maxFishSpeed;
             }
+
+            animatorFish.SetBool("grounded", true);
+            float animationSpeed = 0;
+            if (_rigidBody.velocity.magnitude > 1)
+            {
+                animationSpeed = Mathf.Abs(_rigidBody.velocity.magnitude) / maxFishSpeed * 3;
+            }
+
+            animatorFish.SetFloat("velocityX", animationSpeed);
         }
         else
         {
@@ -251,7 +263,8 @@ public class PlayerController : MonoBehaviour
         else if (Input.GetKeyUp(KeyCode.Space))
         {
             animatorHuman.SetBool("jump", false);
-            if (_rigidBody.velocity.y > 0) {
+            if (_rigidBody.velocity.y > 0)
+            {
                 _rigidBody.velocity = new Vector2(_rigidBody.velocity.x, _rigidBody.velocity.y * 0.5f);
             }
         }
