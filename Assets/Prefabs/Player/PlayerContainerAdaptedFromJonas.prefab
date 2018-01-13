@@ -493,7 +493,8 @@ MonoBehaviour:
   canSpeakUnderwater: 0
   canGrabItems: 1
   grabbedItemOrigin: {fileID: 1908518018120220}
-  animator: {fileID: 0}
+  animatorHuman: {fileID: 95051096607005076}
+  spriteRendererHuman: {fileID: 212989970520709510}
 --- !u!114 &114632555284393870
 MonoBehaviour:
   m_ObjectHideFlags: 1

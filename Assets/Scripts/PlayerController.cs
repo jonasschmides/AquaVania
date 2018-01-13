@@ -52,7 +52,8 @@ public class PlayerController : MonoBehaviour
 
 
     //Animator
-    [CanBeNull] public Animator animator = null;
+    public Animator animatorHuman;
+    public SpriteRenderer spriteRendererHuman;
 
     //Blickrichtung
     private float facingAngle = 0;
@@ -116,8 +117,8 @@ public class PlayerController : MonoBehaviour
             //Debug.Break();
 
             _newStatus = MorphStatus.HUMAN;
-            if (animator != null)
-                animator.SetBool("isHuman", true);
+            /*if (animatorHuman != null)
+                animatorHuman.SetBool("isHuman", true);*/
         }
         // Morphe character, when notwendig
         SetMorphStatus(_newStatus);
@@ -141,7 +142,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // Code für animator
-        if (animator != null)
+        if (animatorHuman != null)
         {
             //animator.SetFloat("speed", Mathf.Abs(_rigidBody.velocity.x / maxFishSpeed));
         }
@@ -243,10 +244,17 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space) && _isGrounded)
         {
+            animatorHuman.SetBool("jump", true);
             _isGrounded = false;
             _rigidBody.velocity = new Vector2(_rigidBody.velocity.x, 25);
-        }//Debug.Log("I am human.");
-
+        }
+        else if (Input.GetKeyUp(KeyCode.Space))
+        {
+            animatorHuman.SetBool("jump", false);
+            if (_rigidBody.velocity.y > 0) {
+                _rigidBody.velocity = new Vector2(_rigidBody.velocity.x, _rigidBody.velocity.y * 0.5f);
+            }
+        }
         if (Input.GetKey(KeyCode.A))
         {
             _rigidBody.velocity -= new Vector2(0.6f, 0);
@@ -262,6 +270,9 @@ public class PlayerController : MonoBehaviour
         {
             HandleCarryableObject();
         }
+
+        animatorHuman.SetBool("grounded", _isGrounded);
+        animatorHuman.SetFloat("velocityX", Mathf.Abs(_rigidBody.velocity.x));
 
         transform.eulerAngles = new Vector3(0, facingAngle, 0);
     }
@@ -347,14 +358,14 @@ public class PlayerController : MonoBehaviour
         {
             _isInWater = true;
             _newStatus = MorphStatus.DEFAULT_FISH;
-            if (animator != null)
-                //animator.SetBool("isHuman", false);
-                if (Mathf.Abs(_rigidBody.velocity.y) > 5)
-                {
-                    audioSrc.Stop();
-                    audioSrc.pitch = Random.Range(0.95f, 1.1f);
-                    audioSrc.PlayOneShot(sfxWaterSplash, -0.03f * _rigidBody.velocity.y);
-                }
+
+            //animator.SetBool("isHuman", false);
+            if (Mathf.Abs(_rigidBody.velocity.y) > 5)
+            {
+                audioSrc.Stop();
+                audioSrc.pitch = Random.Range(0.95f, 1.1f);
+                audioSrc.PlayOneShot(sfxWaterSplash, -0.03f * _rigidBody.velocity.y);
+            }
         }
     }
 
