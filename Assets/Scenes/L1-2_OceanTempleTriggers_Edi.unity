@@ -193,6 +193,11 @@ Prefab:
       propertyPath: toActivate.Array.data[0]
       value: 
       objectReference: {fileID: 1073043342}
+    - target: {fileID: 114076783585011558, guid: 27d0aa471ff332e4c9953d52ff99af66,
+        type: 2}
+      propertyPath: tType
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 27d0aa471ff332e4c9953d52ff99af66, type: 2}
   m_IsPrefabParent: 0
@@ -795,7 +800,7 @@ Prefab:
     - target: {fileID: 114115435133805904, guid: 323814199a9ae0745bfbb66b07272ba6,
         type: 2}
       propertyPath: m_Text
-      value: Control the flow of currents (Collect the red triggers)
+      value: Control the flow of currents (Collect the stars)
       objectReference: {fileID: 0}
     - target: {fileID: 114282072782125132, guid: 323814199a9ae0745bfbb66b07272ba6,
         type: 2}
@@ -1253,6 +1258,11 @@ Prefab:
     - target: {fileID: 4017164478238184, guid: 3fd7c20e445a96d4397c867c91bd8f67, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.97736096
+      objectReference: {fileID: 0}
+    - target: {fileID: 114026644205628868, guid: 3fd7c20e445a96d4397c867c91bd8f67,
+        type: 2}
+      propertyPath: isActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3fd7c20e445a96d4397c867c91bd8f67, type: 2}
@@ -1810,5 +1820,5 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
