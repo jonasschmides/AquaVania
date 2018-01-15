@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip sfxTakeItem;
     public AudioClip sfxWaterSplash;
     public AudioClip sfxWaterPlay;
+    public AudioClip sfxJump;
 
     //Maximale Geschwindigkeit als Fisch
     public float maxFishSpeed = 4f;
@@ -179,6 +180,8 @@ public class PlayerController : MonoBehaviour
         {
             //animator.SetFloat("speed", Mathf.Abs(_rigidBody.velocity.x / maxFishSpeed));
         }
+
+    
     }
 
     void CheckGameOver()
@@ -303,6 +306,8 @@ public class PlayerController : MonoBehaviour
             animatorHuman.SetBool("jump", true);
             _isGrounded = false;
             _rigidBody.velocity = new Vector2(_rigidBody.velocity.x, 25);
+            audioSrc.Stop();
+            audioSrc.PlayOneShot(sfxJump, 0.2f);
         }
         else if (Input.GetKeyUp(KeyCode.Space))
         {

@@ -18,7 +18,10 @@ E -- Grab / Release object
 
 SPACE	-- Perform context-based action (e.g. Jump)
   
-  
+
+R -- Restart the level
+
+
 ESC --	Back to menu / Quit game
 
 ## Gameplay Features
@@ -50,6 +53,11 @@ ESC --	Back to menu / Quit game
 - EDI   2h    More levels, QOL improvements
 - EDI   3h    Recording more SFX, implementing audio mixer
 - EDI   2h    Code Refactoring, Level "warping", Level title / subtitle / hints
+- EDI	2h    Added sound mixer, another background track and a gameover SFX
+- JONAS ??		Animation, Background rendering
+- EDI	1h    Improved fish jumping out of water, added Jonas' sprite renderer
+- EDI	2h		Added Air-mechanics (fish can't breathe outside of water), added UI to show air status
+- EDI	3h		Added additional levels, reworked gamecontroller singleton
 
 
 ## Problems and Challenges

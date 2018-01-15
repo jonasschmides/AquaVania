@@ -625,7 +625,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1250342716639350}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.13, y: -3.45, z: 0}
+  m_LocalPosition: {x: -10.54, y: 11.55, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4115833620895080}
@@ -1012,6 +1012,7 @@ MonoBehaviour:
   sfxTakeItem: {fileID: 8300000, guid: 62d0d3584de0e3044b97508f4bce0526, type: 3}
   sfxWaterSplash: {fileID: 8300000, guid: 159a7d361fbbe9a4392550ef5ddaffca, type: 3}
   sfxWaterPlay: {fileID: 8300000, guid: 678f95ba0d4e88546ac9d9407a5b1b1f, type: 3}
+  sfxJump: {fileID: 8300000, guid: e82dde2efac0c0f4f93f218c528a06ff, type: 3}
   maxFishSpeed: 4
   fishAccel: 0.4
   initStatus: 2
