@@ -625,7 +625,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1250342716639350}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.04, y: -12.160001, z: 0}
+  m_LocalPosition: {x: -7.13, y: -3.45, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4115833620895080}
@@ -994,6 +994,7 @@ MonoBehaviour:
   groundFish: {fileID: 4297848961924388}
   groundFishBack: {fileID: 4202682397109268}
   groundHuman: {fileID: 4403857558205140}
+  bubbles: {fileID: 1464663417203066}
   airMeterCanvasHolder: {fileID: 1399229580039464}
   airMeter:
   - {fileID: 1258874493758304}

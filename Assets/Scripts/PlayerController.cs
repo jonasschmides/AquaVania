@@ -10,7 +10,6 @@ public class PlayerController : MonoBehaviour
     //Referenzen
     private Rigidbody2D _rigidBody;
     private GameObject _carryRef;
-    private ParticleSystem _bubbleSystem;
     private GameObject _touchedAccepterRef = null;
     private GameObject _touchedCarryableRef = null;
 
@@ -21,6 +20,7 @@ public class PlayerController : MonoBehaviour
     public Transform groundFishBack;
     public Transform groundHuman;
 
+    public GameObject bubbles;
     public GameObject airMeterCanvasHolder;
     public GameObject[] airMeter;
     private float timePerImage;
@@ -84,7 +84,6 @@ public class PlayerController : MonoBehaviour
         //end debug
 
         _rigidBody = GetComponent<Rigidbody2D>();
-        _bubbleSystem = GetComponent<ParticleSystem>();
         sqrMaxFishSpeed = maxFishSpeed * maxFishSpeed;
 
         SetMorphStatus(initStatus);
@@ -104,6 +103,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        CheckGameOver();
+
         _isGrounded = Physics2D.Linecast(transform.position, groundHuman.position, 1 << LayerMask.NameToLayer("Ground"));
 
         if (!_isInWater)
@@ -144,8 +145,6 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-       
-
         if (_isGrounded)
         {
             //Debug.Break();
@@ -182,6 +181,19 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void CheckGameOver()
+    {
+        bool isOver = false;
+
+        if (airTime <= 0)
+            isOver = true;
+
+        if (isOver)
+        {
+            GameController.Instance.LoadLevel("GameOver");
+        }
+    }
+
     void SetMorphStatus(MorphStatus newStatus)
     {
         if (_morphStatus == newStatus) return;
@@ -211,6 +223,7 @@ public class PlayerController : MonoBehaviour
     {
         if (_isInWater)
         {
+
             if (Input.GetKey(KeyCode.W)) _rigidBody.velocity += new Vector2(0, fishAccel);
             if (Input.GetKey(KeyCode.S)) _rigidBody.velocity -= new Vector2(0, fishAccel);
 
@@ -400,6 +413,7 @@ public class PlayerController : MonoBehaviour
 
         if (other.gameObject.CompareTag("WaterLevel"))
         {
+            bubbles.SetActive(true);
             _isInWater = true;
             _newStatus = MorphStatus.DEFAULT_FISH;
 
@@ -418,6 +432,7 @@ public class PlayerController : MonoBehaviour
 
         if (other.gameObject.CompareTag("WaterLevel") && _isInWater)
         {
+            bubbles.SetActive(false);
             _isInWater = false;
             _rigidBody.velocity = new Vector2(_rigidBody.velocity.x, Mathf.Min(15, _rigidBody.velocity.y * 3.5f));
             audioSrc.Stop();

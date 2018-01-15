@@ -12,6 +12,7 @@ public class GameController : MonoBehaviour
     public GameObject bgm;
     public AudioSource bgmSrc;
 
+    public AudioClip GameOverSound;
     public AudioClip L1BGM, L2BGM;
 
 
@@ -72,6 +73,10 @@ public class GameController : MonoBehaviour
         {
             bgmSrc.Stop();
             newClip = L1BGM;
+        }else if (levelPath.StartsWith("GameOver"))
+        {
+            bgmSrc.Stop();
+            bgmSrc.PlayOneShot(GameOverSound);
         }
         else if (levelPath.StartsWith("L1-"))
         {
@@ -82,7 +87,7 @@ public class GameController : MonoBehaviour
             newClip = L2BGM;
         }
 
-        if (bgmSrc.clip != newClip)
+        if (bgmSrc.clip != newClip && levelPath != "MainMenu")
         {
             bgmSrc.clip = newClip;
             bgmSrc.Play();
