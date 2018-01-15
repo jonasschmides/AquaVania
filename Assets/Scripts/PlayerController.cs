@@ -10,7 +10,6 @@ public class PlayerController : MonoBehaviour
     //Referenzen
     private Rigidbody2D _rigidBody;
     private GameObject _carryRef;
-    private ParticleSystem _bubbleSystem;
     private GameObject _touchedAccepterRef = null;
     private GameObject _touchedCarryableRef = null;
 
@@ -21,10 +20,11 @@ public class PlayerController : MonoBehaviour
     public Transform groundFishBack;
     public Transform groundHuman;
 
+    public GameObject bubbles;
     public GameObject airMeterCanvasHolder;
     public GameObject[] airMeter;
     private float timePerImage;
-    private float maxAirTime = 20f;
+    private float maxAirTime = 15f;
     private float airTime;
 
     //Audio
@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip sfxTakeItem;
     public AudioClip sfxWaterSplash;
     public AudioClip sfxWaterPlay;
+    public AudioClip sfxJump;
 
     //Maximale Geschwindigkeit als Fisch
     public float maxFishSpeed = 4f;
@@ -84,7 +85,6 @@ public class PlayerController : MonoBehaviour
         //end debug
 
         _rigidBody = GetComponent<Rigidbody2D>();
-        _bubbleSystem = GetComponent<ParticleSystem>();
         sqrMaxFishSpeed = maxFishSpeed * maxFishSpeed;
 
         SetMorphStatus(initStatus);
@@ -104,6 +104,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        CheckGameOver();
+
         _isGrounded = Physics2D.Linecast(transform.position, groundHuman.position, 1 << LayerMask.NameToLayer("Ground"));
 
         if (!_isInWater)
@@ -117,7 +119,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            airTime += Time.deltaTime*6;
+            airTime += Time.deltaTime*4.5f;
             airTime = Mathf.Min(airTime, maxAirTime);
           
             _rigidBody.gravityScale = 0;
@@ -143,8 +145,6 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
-
-       
 
         if (_isGrounded)
         {
@@ -180,6 +180,21 @@ public class PlayerController : MonoBehaviour
         {
             //animator.SetFloat("speed", Mathf.Abs(_rigidBody.velocity.x / maxFishSpeed));
         }
+
+    
+    }
+
+    void CheckGameOver()
+    {
+        bool isOver = false;
+
+        if (airTime <= 0)
+            isOver = true;
+
+        if (isOver)
+        {
+            GameController.Instance.LoadLevel("GameOver");
+        }
     }
 
     void SetMorphStatus(MorphStatus newStatus)
@@ -211,6 +226,7 @@ public class PlayerController : MonoBehaviour
     {
         if (_isInWater)
         {
+
             if (Input.GetKey(KeyCode.W)) _rigidBody.velocity += new Vector2(0, fishAccel);
             if (Input.GetKey(KeyCode.S)) _rigidBody.velocity -= new Vector2(0, fishAccel);
 
@@ -290,6 +306,8 @@ public class PlayerController : MonoBehaviour
             animatorHuman.SetBool("jump", true);
             _isGrounded = false;
             _rigidBody.velocity = new Vector2(_rigidBody.velocity.x, 25);
+            audioSrc.Stop();
+            audioSrc.PlayOneShot(sfxJump, 0.2f);
         }
         else if (Input.GetKeyUp(KeyCode.Space))
         {
@@ -400,6 +418,7 @@ public class PlayerController : MonoBehaviour
 
         if (other.gameObject.CompareTag("WaterLevel"))
         {
+            bubbles.SetActive(true);
             _isInWater = true;
             _newStatus = MorphStatus.DEFAULT_FISH;
 
@@ -418,6 +437,7 @@ public class PlayerController : MonoBehaviour
 
         if (other.gameObject.CompareTag("WaterLevel") && _isInWater)
         {
+            bubbles.SetActive(false);
             _isInWater = false;
             _rigidBody.velocity = new Vector2(_rigidBody.velocity.x, Mathf.Min(15, _rigidBody.velocity.y * 3.5f));
             audioSrc.Stop();
@@ -428,5 +448,13 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("AcceptsObject")) _touchedAccepterRef = null;
         if (other.gameObject.CompareTag("Carryable")) _touchedCarryableRef = null;
         if (_carryRef != null) _touchedCarryableRef = _carryRef;
+    }
+
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("DamageSource"))
+        {
+            airTime -= 6f * Time.deltaTime;
+        }
     }
 }

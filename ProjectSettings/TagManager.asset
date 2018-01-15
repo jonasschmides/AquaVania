@@ -13,6 +13,7 @@ TagManager:
   - Jumpable
   - Warp
   - GroundLevel
+  - DamageSource
   layers:
   - Default
   - TransparentFX

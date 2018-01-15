@@ -29,7 +29,15 @@ public abstract class Activatable : MonoBehaviour
     }
     public virtual void Toggle()
     {
-        if (isActive) Activate();
-        else Deactivate();
+        foreach (var i in toActivate)
+        {
+            Activatable j = (Activatable)i.GetComponent("Activatable");
+            if (j.isActive)
+                j.Deactivate();
+            else
+                j.Activate();
+        }
+        //if (isActive) Activate();
+        //else Deactivate();
     }
 }
