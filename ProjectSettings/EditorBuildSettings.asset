@@ -36,11 +36,11 @@ EditorBuildSettings:
     path: Assets/Scenes/L2-3_OceanSurfaceMaze_Edi.unity
     guid: 30847ed155e57a449a5d9950e79b8180
   - enabled: 1
+    path: Assets/Scenes/L3-1_FactoryIntro_Edi.unity
+    guid: 3306e798fef6dbc44a23ff14e05a61fb
+  - enabled: 1
     path: Assets/Scenes/Level1.unity
     guid: e7c3ed4a159d34ed88e75d59447228f7
   - enabled: 1
     path: Assets/Scenes/Level_Jonas.unity
     guid: b2473611615bc4f0a9085d75a1491e0f
-  - enabled: 1
-    path: Assets/Scenes/Level_FactoryTest_Edi.unity
-    guid: a19c52968849ca541abf3158f59b020f
