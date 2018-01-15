@@ -449,4 +449,13 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Carryable")) _touchedCarryableRef = null;
         if (_carryRef != null) _touchedCarryableRef = _carryRef;
     }
+
+    private void OnCollisionStay2D(Collision2D other)
+    {
+
+        if (other.gameObject.CompareTag("DamageSource"))
+        {
+            airTime -= 6f*Time.deltaTime;
+        }
+    }
 }
