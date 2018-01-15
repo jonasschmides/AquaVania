@@ -4,12 +4,16 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class GameController : MonoBehaviour {
+public class GameController : MonoBehaviour
+{
 
     public AudioSource clickSrc;
 
     public GameObject bgm;
     public AudioSource bgmSrc;
+
+    public AudioClip L1BGM, L2BGM;
+
 
     public float warpX, warpY;
 
@@ -21,17 +25,26 @@ public class GameController : MonoBehaviour {
 
     void Awake()
     {
+        if (Instance != null)
+        {
+            Destroy(Instance.gameObject);
+        }
+
         Instance = this;
-        DontDestroyOnLoad(transform.gameObject);
-        DontDestroyOnLoad(bgm);
+        DontDestroyOnLoad(this);
+        //DontDestroyOnLoad(transform.gameObject);
+
     }
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
+
         //Debug.Log("Welcome to AquaVania!");
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
         if (Input.GetKeyUp(KeyCode.Escape))
         {
             Scene curScene = SceneManager.GetActiveScene();
@@ -42,8 +55,8 @@ public class GameController : MonoBehaviour {
                     Application.Quit();
                     break;
                 default:
-                    Destroy(bgm);
-                    Destroy(this);
+                    //Destroy(bgm);
+                    //Destroy(this);
                     LoadLevel("MainMenu");
                     break;
             }
@@ -52,6 +65,28 @@ public class GameController : MonoBehaviour {
 
     public void LoadLevel(string levelPath)
     {
+        //Debug.Log("loading: " + levelPath);
+        var oldClip = bgmSrc.clip;
+        var newClip = oldClip;
+        if (levelPath.StartsWith("MainMenu"))
+        {
+            bgmSrc.Stop();
+            newClip = L1BGM;
+        }
+        else if (levelPath.StartsWith("L1-"))
+        {
+            newClip = L1BGM;
+        }
+        else if (levelPath.StartsWith("L2-"))
+        {
+            newClip = L2BGM;
+        }
+
+        if (bgmSrc.clip != newClip)
+        {
+            bgmSrc.clip = newClip;
+            bgmSrc.Play();
+        }
         SceneManager.LoadScene(levelPath);
     }
 }

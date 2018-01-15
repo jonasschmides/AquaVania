@@ -24,17 +24,17 @@ EditorBuildSettings:
     path: Assets/Scenes/L1-3_OceanTemplePuzzle_Edi.unity
     guid: df8529c9d95cfa54f9d53cb73833c4d3
   - enabled: 1
-    path: Assets/Scenes/L2-1_OceanSurfaceIntro.unity
-    guid: 43a1baa32f5f5054383e75e6b827875e
+    path: Assets/Scenes/L2-1_OceanSurfaceIntro_Edi.unity
+    guid: e21dface7d1bf6f44a9f530b0b37db70
+  - enabled: 1
+    path: Assets/Scenes/L2-2_OceanSurfaceHook_Edi.unity
+    guid: ccdcac2ec06bab04f842b7ecd487fd93
   - enabled: 1
     path: Assets/Scenes/Level1.unity
     guid: e7c3ed4a159d34ed88e75d59447228f7
   - enabled: 1
-    path: Assets/Scenes/Level_CurrentsChallenge_Edi.unity
-    guid: 350fa64c840574445b973c34175dd785
-  - enabled: 1
     path: Assets/Scenes/Level_Jonas.unity
     guid: b2473611615bc4f0a9085d75a1491e0f
   - enabled: 1
-    path: Assets/Scenes/Level_FactoryTest.unity
-    guid: 5ab63f734ef6bdf42ab3ad75a9970c74
+    path: Assets/Scenes/Level_FactoryTest_Edi.unity
+    guid: a19c52968849ca541abf3158f59b020f

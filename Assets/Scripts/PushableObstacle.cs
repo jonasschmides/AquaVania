@@ -8,7 +8,6 @@ public class PushableObstacle : MonoBehaviour
     public Rigidbody2D rigidBody;
    
     public AudioSource src;
-    private bool _isInWater = false;
 
     private void OnCollisionEnter2D(Collision2D other)
     {
@@ -20,14 +19,12 @@ public class PushableObstacle : MonoBehaviour
 
             src.PlayOneShot(clip);
         }
-      
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("WaterLevel"))
-        {
-            _isInWater = true;
+        { 
             rigidBody.gravityScale = 0;
         }
     }
@@ -36,7 +33,6 @@ public class PushableObstacle : MonoBehaviour
     {
         if (other.gameObject.CompareTag("WaterLevel"))
         {
-            _isInWater = false;
             rigidBody.gravityScale = 1;
         }
     }

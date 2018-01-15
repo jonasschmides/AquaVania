@@ -266,10 +266,10 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: L2-1_OceanSurfaceIntro
+          m_StringArgument: L2-1_OceanSurfaceIntro_Edi
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1842624864}
+      - m_Target: {fileID: 0}
         m_MethodName: PlayOneShot
         m_Mode: 2
         m_Arguments:
@@ -403,7 +403,7 @@ MonoBehaviour:
           m_StringArgument: L1-2_OceanTempleTriggers_Edi
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1842624864}
+      - m_Target: {fileID: 0}
         m_MethodName: PlayOneShot
         m_Mode: 2
         m_Arguments:
@@ -611,7 +611,7 @@ MonoBehaviour:
           m_StringArgument: Controls
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1842624864}
+      - m_Target: {fileID: 0}
         m_MethodName: PlayOneShot
         m_Mode: 2
         m_Arguments:
@@ -893,7 +893,7 @@ MonoBehaviour:
           m_StringArgument: Credits
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1842624864}
+      - m_Target: {fileID: 0}
         m_MethodName: PlayOneShot
         m_Mode: 2
         m_Arguments:
@@ -1024,10 +1024,10 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Level_FactoryTest
+          m_StringArgument: Level_FactoryTest_Edi
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1842624864}
+      - m_Target: {fileID: 0}
         m_MethodName: PlayOneShot
         m_Mode: 2
         m_Arguments:
@@ -1266,7 +1266,7 @@ MonoBehaviour:
           m_StringArgument: Level_Jonas
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1842624864}
+      - m_Target: {fileID: 0}
         m_MethodName: PlayOneShot
         m_Mode: 2
         m_Arguments:
@@ -1357,7 +1357,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 350, y: -76}
+  m_AnchoredPosition: {x: 165, y: -140}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1168158039
@@ -1407,10 +1407,10 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Level_CurrentsChallenge_Edi
+          m_StringArgument: L2-2_OceanSurfaceHook_Edi
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1842624864}
+      - m_Target: {fileID: 0}
         m_MethodName: PlayOneShot
         m_Mode: 2
         m_Arguments:
@@ -1618,7 +1618,7 @@ MonoBehaviour:
           m_StringArgument: L1-1_OceanTempleBasicMovement_Edi
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1842624864}
+      - m_Target: {fileID: 0}
         m_MethodName: PlayOneShot
         m_Mode: 2
         m_Arguments:
@@ -1670,7 +1670,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1842624863}
     m_Modifications:
     - target: {fileID: 4682793750756008, guid: 2f7b258497e26f947b793b2c7aa730c8, type: 2}
       propertyPath: m_LocalPosition.x
@@ -1682,19 +1682,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4682793750756008, guid: 2f7b258497e26f947b793b2c7aa730c8, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -1.3671875
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4682793750756008, guid: 2f7b258497e26f947b793b2c7aa730c8, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4682793750756008, guid: 2f7b258497e26f947b793b2c7aa730c8, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4682793750756008, guid: 2f7b258497e26f947b793b2c7aa730c8, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4682793750756008, guid: 2f7b258497e26f947b793b2c7aa730c8, type: 2}
       propertyPath: m_LocalRotation.w
@@ -1702,11 +1702,16 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4682793750756008, guid: 2f7b258497e26f947b793b2c7aa730c8, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2f7b258497e26f947b793b2c7aa730c8, type: 2}
   m_IsPrefabParent: 0
+--- !u!4 &1347677812 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4682793750756008, guid: 2f7b258497e26f947b793b2c7aa730c8,
+    type: 2}
+  m_PrefabInternal: {fileID: 1347677811}
 --- !u!1 &1543994287
 GameObject:
   m_ObjectHideFlags: 0
@@ -2152,7 +2157,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 13
+    m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -2163,7 +2168,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Start Currents-Challenge
+  m_Text: Ocean Surface 2-2
 --- !u!222 &1809169868
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2201,6 +2206,8 @@ MonoBehaviour:
   clickSrc: {fileID: 1842624864}
   bgm: {fileID: 1109970246}
   bgmSrc: {fileID: 1109970247}
+  L1BGM: {fileID: 8300000, guid: 6c1ed21baf1c5324e8ae52ea91c519be, type: 3}
+  L2BGM: {fileID: 8300000, guid: 222f00ebce8c50b4cbbc0159386c405e, type: 3}
   warpX: 0
   warpY: 0
 --- !u!4 &1842624863
@@ -2212,7 +2219,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1347677812}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2594,7 +2602,7 @@ MonoBehaviour:
           m_StringArgument: L1-3_OceanTemplePuzzle_Edi
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1842624864}
+      - m_Target: {fileID: 0}
         m_MethodName: PlayOneShot
         m_Mode: 2
         m_Arguments:
