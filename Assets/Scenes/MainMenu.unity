@@ -2420,7 +2420,7 @@ MonoBehaviour:
   clickSrc: {fileID: 1842624864}
   bgm: {fileID: 1109970246}
   bgmSrc: {fileID: 1109970247}
-  GameOverSound: {fileID: 0}
+  GameOverSound: {fileID: 8300000, guid: 62d0d3584de0e3044b97508f4bce0526, type: 3}
   L1BGM: {fileID: 8300000, guid: 6c1ed21baf1c5324e8ae52ea91c519be, type: 3}
   L2BGM: {fileID: 8300000, guid: 222f00ebce8c50b4cbbc0159386c405e, type: 3}
   warpX: 0

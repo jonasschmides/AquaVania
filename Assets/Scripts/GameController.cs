@@ -62,6 +62,10 @@ public class GameController : MonoBehaviour
                     break;
             }
         }
+        if (Input.GetKey(KeyCode.R))
+        {
+            LoadLevel(SceneManager.GetActiveScene().name);
+        }
     }
 
     public void LoadLevel(string levelPath)

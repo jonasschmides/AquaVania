@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     public GameObject airMeterCanvasHolder;
     public GameObject[] airMeter;
     private float timePerImage;
-    private float maxAirTime = 20f;
+    private float maxAirTime = 15f;
     private float airTime;
 
     //Audio
@@ -118,7 +118,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            airTime += Time.deltaTime*6;
+            airTime += Time.deltaTime*4.5f;
             airTime = Mathf.Min(airTime, maxAirTime);
           
             _rigidBody.gravityScale = 0;
