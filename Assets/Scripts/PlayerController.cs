@@ -450,12 +450,11 @@ public class PlayerController : MonoBehaviour
         if (_carryRef != null) _touchedCarryableRef = _carryRef;
     }
 
-    private void OnCollisionStay2D(Collision2D other)
+    void OnTriggerStay2D(Collider2D other)
     {
-
         if (other.gameObject.CompareTag("DamageSource"))
         {
-            airTime -= 6f*Time.deltaTime;
+            airTime -= 6f * Time.deltaTime;
         }
     }
 }

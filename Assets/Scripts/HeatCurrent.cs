@@ -48,7 +48,7 @@ public class HeatCurrent : Activatable
                 }
                 else if (!timerState)
                 {
-                    barrier.enabled = true;
+                    barrier.enabled = isBarrier;
               
                     bubbles.Play();
                     timer = timeOn;
