@@ -503,7 +503,7 @@ public class PlayerController : MonoBehaviour
         {
             _isTakingDamage = true;
             //Debug.Log(Random.value);
-            airTime -= 10f * Time.deltaTime;
+            airTime -= 13f * Time.deltaTime;
             hurtWarning.SetActive(true);
         }
     }
