@@ -3054,6 +3054,7 @@ MonoBehaviour:
   W4BGM: {fileID: 8300000, guid: 909569abcaed48844b928f77d21125f3, type: 3}
   warpX: 0
   warpY: 0
+  reloadName: 
 --- !u!4 &1842624863
 Transform:
   m_ObjectHideFlags: 0
