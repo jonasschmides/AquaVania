@@ -4979,7 +4979,7 @@ Prefab:
     - target: {fileID: 114282072782125132, guid: 323814199a9ae0745bfbb66b07272ba6,
         type: 2}
       propertyPath: m_Text
-      value: Ocean Ruins 2-2
+      value: Ocean Ruins 3-2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 323814199a9ae0745bfbb66b07272ba6, type: 2}
@@ -8655,6 +8655,26 @@ Prefab:
         type: 2}
       propertyPath: LevelName
       value: L3-3_OceanRuinsMaze_Edi
+      objectReference: {fileID: 0}
+    - target: {fileID: 61233307999502062, guid: d8f6c89707bab7b40a4d58e3c5851e04,
+        type: 2}
+      propertyPath: m_Offset.y
+      value: -0.30391908
+      objectReference: {fileID: 0}
+    - target: {fileID: 61233307999502062, guid: d8f6c89707bab7b40a4d58e3c5851e04,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 1.6730895
+      objectReference: {fileID: 0}
+    - target: {fileID: 61233307999502062, guid: d8f6c89707bab7b40a4d58e3c5851e04,
+        type: 2}
+      propertyPath: m_Offset.x
+      value: 0.3088765
+      objectReference: {fileID: 0}
+    - target: {fileID: 61233307999502062, guid: d8f6c89707bab7b40a4d58e3c5851e04,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 0.80237675
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d8f6c89707bab7b40a4d58e3c5851e04, type: 2}

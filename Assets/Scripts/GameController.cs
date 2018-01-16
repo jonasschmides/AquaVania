@@ -18,6 +18,8 @@ public class GameController : MonoBehaviour
 
     public float warpX, warpY;
 
+    public string reloadName;
+
     public static GameController Instance
     {
         get;
@@ -64,7 +66,15 @@ public class GameController : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.R))
         {
-            LoadLevel(SceneManager.GetActiveScene().name);
+            Scene curScene = SceneManager.GetActiveScene();
+            if (curScene.name != "GameOver")
+            {
+                LoadLevel(SceneManager.GetActiveScene().name);
+            }
+            else
+            {
+                LoadLevel(reloadName);
+            }
         }
     }
 
@@ -77,10 +87,15 @@ public class GameController : MonoBehaviour
         {
             bgmSrc.Stop();
             newClip = W1BGM;
-        }else if (levelPath.StartsWith("GameOver"))
+        }
+        else if (levelPath.StartsWith("GameOver"))
         {
             bgmSrc.Stop();
-            bgmSrc.PlayOneShot(GameOverSound);
+            clickSrc.PlayOneShot(GameOverSound); //hackyhack
+            newClip = null;
+        }else if (levelPath.StartsWith("Credits"))
+        {
+            newClip = null;
         }
         else if (levelPath.StartsWith("L1-"))
         {
