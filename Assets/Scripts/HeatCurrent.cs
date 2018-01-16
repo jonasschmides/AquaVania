@@ -11,6 +11,7 @@ public class HeatCurrent : Activatable
     public GameObject bubblesObj;
     public ParticleSystem bubbles;
     public BoxCollider2D barrier;
+    public GameObject hideMe;
 
     public float timeOff;
     public float timeOn;
@@ -41,14 +42,14 @@ public class HeatCurrent : Activatable
                 if (timerState)
                 {
                     barrier.enabled = false;
-       
+
                     bubbles.Stop();
                     timer = timeOff;
                 }
                 else if (!timerState)
                 {
                     barrier.enabled = true;
-              
+
                     bubbles.Play();
                     timer = timeOn;
                 }
@@ -59,6 +60,8 @@ public class HeatCurrent : Activatable
 
     public override void Activate()
     {
+        if (hideMe != null)
+            hideMe.SetActive(true);
         bubbles.Play();
         barrier.enabled = true;
         isActive = true;
@@ -66,6 +69,8 @@ public class HeatCurrent : Activatable
 
     public override void Deactivate()
     {
+        if (hideMe != null)
+            hideMe.SetActive(false);
         bubbles.Stop();
         barrier.enabled = false;
         isActive = false;
