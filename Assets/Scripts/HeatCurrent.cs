@@ -6,7 +6,6 @@ public class HeatCurrent : Activatable
 {
 
     public bool isEmitter;
-    public bool isBarrier;
 
     public GameObject barrierObj;
     public GameObject bubblesObj;
@@ -48,7 +47,7 @@ public class HeatCurrent : Activatable
                 }
                 else if (!timerState)
                 {
-                    barrier.enabled = isBarrier;
+                    barrier.enabled = true;
               
                     bubbles.Play();
                     timer = timeOn;
@@ -61,7 +60,7 @@ public class HeatCurrent : Activatable
     public override void Activate()
     {
         bubbles.Play();
-        barrier.enabled = isBarrier;
+        barrier.enabled = true;
         isActive = true;
     }
 

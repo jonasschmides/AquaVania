@@ -454,6 +454,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("DamageSource"))
         {
+            Debug.Log(Random.value);
             airTime -= 6f * Time.deltaTime;
         }
     }
