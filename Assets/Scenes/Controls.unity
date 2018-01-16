@@ -367,6 +367,8 @@ MonoBehaviour:
 
     <SPACE> - Context-based action (e.g. Jump)
 
+    R - Restart Level
+
     <ESC> - Back to menu / Quit game'
 --- !u!222 &1372661016
 CanvasRenderer:
