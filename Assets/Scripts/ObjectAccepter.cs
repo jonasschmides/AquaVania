@@ -23,7 +23,6 @@ public class ObjectAccepter : Activatable
         {
             marker.gameObject.GetComponent<Renderer>().material.color = _colorInactive;
         }
-       
     }
 
     public void Hold(GameObject obj)
@@ -35,7 +34,6 @@ public class ObjectAccepter : Activatable
                 Toggle();
             itemRef = obj;
             marker.gameObject.GetComponent<Renderer>().material.color = _colorHolding;
-            
         }
     }
 
