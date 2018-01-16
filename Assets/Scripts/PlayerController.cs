@@ -238,7 +238,7 @@ public class PlayerController : MonoBehaviour
         if (_isInWater)
         {
 
-            if (Input.GetKey(KeyCode.W)) _rigidBody.velocity += new Vector2(0, fishAccel);
+            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.Space)) _rigidBody.velocity += new Vector2(0, fishAccel);
             if (Input.GetKey(KeyCode.S)) _rigidBody.velocity -= new Vector2(0, fishAccel);
 
             if (Input.GetKey(KeyCode.A))
@@ -505,7 +505,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("DamageSource"))
         {
-            Debug.Log(Random.value);
+            //Debug.Log(Random.value);
             airTime -= 10f * Time.deltaTime;
             hurtWarning.SetActive(true);
         }
