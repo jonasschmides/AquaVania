@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     public GameObject airMeterCanvasHolder;
     public GameObject[] airMeter;
     private float timePerImage;
-    private float maxAirTime = 15f;
+    public float maxAirTime = 15f;
     private float airTime;
 
     //Audio
