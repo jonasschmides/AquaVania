@@ -10,7 +10,7 @@ public class AnimatedObstacle : Activatable
 
     private int wpIndex = 0;
 
-    private float timeToNext = 0.0f;
+    public float timeToNext = 0.0f;
 
     private Vector3 moveVector;
 

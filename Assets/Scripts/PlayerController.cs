@@ -23,9 +23,17 @@ public class PlayerController : MonoBehaviour
     public GameObject bubbles;
     public GameObject airMeterCanvasHolder;
     public GameObject[] airMeter;
-    private float timePerImage;
+    public GameObject hurtWarning;
+
+    public float humanSpeedFactor = 0.75f;
+    public float humanJumpHeightBase = 25f;
+    private float humanJumpHeightCurrent;
+
+
     public float maxAirTime = 15f;
     private float airTime;
+    private float timePerImage;
+
 
     //Audio
     public AudioSource audioSrc;
@@ -35,6 +43,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip sfxWaterSplash;
     public AudioClip sfxWaterPlay;
     public AudioClip sfxJump;
+    public AudioClip sfxBoostJump;
 
     //Maximale Geschwindigkeit als Fisch
     public float maxFishSpeed = 4f;
@@ -58,6 +67,7 @@ public class PlayerController : MonoBehaviour
     //Derzeit default auf true, eventuell auch erlernbar
     public bool canGrabItems = true;
     public GameObject grabbedItemOrigin;
+    public GameObject grabbedItemOriginHuman;
 
     //Blickrichtung
     private float facingAngle = 0;
@@ -75,6 +85,8 @@ public class PlayerController : MonoBehaviour
     {
         timePerImage = maxAirTime / airMeter.Length;
         airTime = maxAirTime;
+
+        humanJumpHeightCurrent = humanJumpHeightBase;
 
         //debug
         if (Application.isEditor && (GameObject.Find("GameController") == null))
@@ -115,13 +127,13 @@ public class PlayerController : MonoBehaviour
                    Physics2D.Linecast(transform.position, groundFishBack.position, 1 << LayerMask.NameToLayer("Ground"));
             _rigidBody.gravityScale = 4;
             airTime -= Time.deltaTime;
-           
+
         }
         else
         {
-            airTime += Time.deltaTime*4.5f;
+            airTime += Time.deltaTime * 4.5f;
             airTime = Mathf.Min(airTime, maxAirTime);
-          
+
             _rigidBody.gravityScale = 0;
         }
 
@@ -132,10 +144,10 @@ public class PlayerController : MonoBehaviour
         else
         {
             airMeterCanvasHolder.SetActive(true);
-           // var hideAt = timePerImage;
+            // var hideAt = timePerImage;
             for (int i = 0; i < airMeter.Length; i++)
             {
-                if(timePerImage * i >= airTime)
+                if (timePerImage * i >= airTime)
                 {
                     airMeter[i].SetActive(false);
                 }
@@ -172,7 +184,8 @@ public class PlayerController : MonoBehaviour
         // Update carried obj. position
         if (_carryRef != null)
         {
-            _carryRef.transform.position = grabbedItemOrigin.transform.position;
+            var targetTransform = _morphStatus == MorphStatus.DEFAULT_FISH ? grabbedItemOrigin : grabbedItemOriginHuman;
+            _carryRef.transform.position = targetTransform.transform.position;
         }
 
         // Code für animator
@@ -180,8 +193,6 @@ public class PlayerController : MonoBehaviour
         {
             //animator.SetFloat("speed", Mathf.Abs(_rigidBody.velocity.x / maxFishSpeed));
         }
-
-    
     }
 
     void CheckGameOver()
@@ -227,7 +238,7 @@ public class PlayerController : MonoBehaviour
         if (_isInWater)
         {
 
-            if (Input.GetKey(KeyCode.W)) _rigidBody.velocity += new Vector2(0, fishAccel);
+            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.Space)) _rigidBody.velocity += new Vector2(0, fishAccel);
             if (Input.GetKey(KeyCode.S)) _rigidBody.velocity -= new Vector2(0, fishAccel);
 
             if (Input.GetKey(KeyCode.A))
@@ -301,13 +312,22 @@ public class PlayerController : MonoBehaviour
 
     void DefaultHumanControls()
     {
-        if (Input.GetKey(KeyCode.Space) && _isGrounded)
+        if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.Space)) && _isGrounded)
         {
             animatorHuman.SetBool("jump", true);
             _isGrounded = false;
-            _rigidBody.velocity = new Vector2(_rigidBody.velocity.x, 25);
+            _rigidBody.velocity = new Vector2(_rigidBody.velocity.x, humanJumpHeightCurrent);
             audioSrc.Stop();
-            audioSrc.PlayOneShot(sfxJump, 0.2f);
+            if (humanJumpHeightBase == humanJumpHeightCurrent)
+            {
+                audioSrc.pitch = Random.Range(0.95f, 1.15f);
+                audioSrc.PlayOneShot(sfxJump, 0.2f);
+            }
+            else
+            {
+                audioSrc.pitch = 1.0f;
+                audioSrc.PlayOneShot(sfxBoostJump, 0.4f);
+            }
         }
         else if (Input.GetKeyUp(KeyCode.Space))
         {
@@ -319,12 +339,12 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.A))
         {
-            _rigidBody.velocity -= new Vector2(0.6f, 0);
+            _rigidBody.velocity -= new Vector2(humanSpeedFactor, 0);
             facingAngle = 180;
         }
         if (Input.GetKey(KeyCode.D))
         {
-            _rigidBody.velocity += new Vector2(0.6f, 0);
+            _rigidBody.velocity += new Vector2(humanSpeedFactor, 0);
             facingAngle = 0;
         }
 
@@ -353,9 +373,22 @@ public class PlayerController : MonoBehaviour
                 audioSrc.PlayOneShot(sfxTakeItem, 0.22f);
 
             GameObject prevAccepterItem = _touchedAccepterRef.gameObject.GetComponent<ObjectAccepter>().GetItemRefBeforeRelease();
+
+
+
             _touchedAccepterRef.gameObject.GetComponent<ObjectAccepter>().Release();
             _touchedAccepterRef.gameObject.GetComponent<ObjectAccepter>().Hold(_carryRef);
+
+
+            if (_carryRef != null)
+            {
+
+            }
+
+
             _carryRef = prevAccepterItem;
+
+
         }
 
         if (_touchedCarryableRef && !_touchedAccepterRef)
@@ -363,13 +396,16 @@ public class PlayerController : MonoBehaviour
             if (_carryRef == null)
             {
                 _carryRef = _touchedCarryableRef.gameObject;
+              
                 audioSrc.PlayOneShot(sfxGrabItem, 0.1f);
             }
             else
             {
+  
                 _carryRef = null;
             }
         }
+ 
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -385,6 +421,9 @@ public class PlayerController : MonoBehaviour
                     break;
                 case PowerupType.SHRINK:
                     transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
+                    break;
+                case PowerupType.AIR:
+                    airTime = maxAirTime;
                     break;
                 case PowerupType.NONE:
                 default:
@@ -430,6 +469,10 @@ public class PlayerController : MonoBehaviour
                 audioSrc.PlayOneShot(sfxWaterSplash, -0.03f * _rigidBody.velocity.y);
             }
         }
+        if (other.gameObject.CompareTag("JumpPad"))
+        {
+            humanJumpHeightCurrent = humanJumpHeightBase * 3;
+        }
     }
 
     void OnTriggerExit2D(Collider2D other)
@@ -448,14 +491,25 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("AcceptsObject")) _touchedAccepterRef = null;
         if (other.gameObject.CompareTag("Carryable")) _touchedCarryableRef = null;
         if (_carryRef != null) _touchedCarryableRef = _carryRef;
+
+        if (other.gameObject.CompareTag("JumpPad"))
+        {
+            humanJumpHeightCurrent = humanJumpHeightBase;
+        }
+
+        if (other.gameObject.CompareTag("DamageSource"))
+        {
+            hurtWarning.SetActive(false);
+        }
     }
 
     void OnTriggerStay2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("DamageSource"))
         {
-            Debug.Log(Random.value);
-            airTime -= 6f * Time.deltaTime;
+            //Debug.Log(Random.value);
+            airTime -= 10f * Time.deltaTime;
+            hurtWarning.SetActive(true);
         }
     }
 }

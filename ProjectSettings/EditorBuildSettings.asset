@@ -39,6 +39,12 @@ EditorBuildSettings:
     path: Assets/Scenes/L4-1_FactoryIntro_Edi.unity
     guid: 6444981b4a23bfd42ba27969feff7a87
   - enabled: 1
+    path: Assets/Scenes/L4-2_FactoryInternal_Edi.unity
+    guid: 6050255f12042a44eabd89ba2ce7cc9e
+  - enabled: 1
+    path: Assets/Scenes/L4-3_FactoryFinale_Edi.unity
+    guid: f8032a6d98921514eb25b0aab3bd3c4c
+  - enabled: 1
     path: Assets/Scenes/Level1.unity
     guid: e7c3ed4a159d34ed88e75d59447228f7
   - enabled: 1
