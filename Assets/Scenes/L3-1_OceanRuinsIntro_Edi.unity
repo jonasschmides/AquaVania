@@ -138,8 +138,8 @@ Transform:
   - {fileID: 919171440}
   - {fileID: 127815327}
   - {fileID: 2017603328}
-  - {fileID: 1547555537}
   - {fileID: 1257143350}
+  - {fileID: 1547555537}
   - {fileID: 684746561}
   - {fileID: 886921108}
   m_Father: {fileID: 0}
@@ -2516,7 +2516,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4225206521003574, guid: 4c137a53b5146c54bb265f4c7aa46ee3, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -10.29
+      value: -8.47
       objectReference: {fileID: 0}
     - target: {fileID: 4225206521003574, guid: 4c137a53b5146c54bb265f4c7aa46ee3, type: 2}
       propertyPath: m_LocalRotation.x
@@ -2645,7 +2645,7 @@ Prefab:
     - target: {fileID: 114282072782125132, guid: 323814199a9ae0745bfbb66b07272ba6,
         type: 2}
       propertyPath: m_Text
-      value: Ocean Ruins 2-1
+      value: Ocean Ruins 3-1
       objectReference: {fileID: 0}
     - target: {fileID: 114115435133805904, guid: 323814199a9ae0745bfbb66b07272ba6,
         type: 2}

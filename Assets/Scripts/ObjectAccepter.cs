@@ -30,8 +30,11 @@ public class ObjectAccepter : Activatable
         if (obj != null)
         {
             obj.transform.position = objOrigin.transform.position;
-            if(itemRef != obj)
+            if (itemRef != obj)
+            {
                 Toggle();
+                isActive = true;
+            }
             itemRef = obj;
             marker.gameObject.GetComponent<Renderer>().material.color = _colorHolding;
         }
@@ -48,6 +51,7 @@ public class ObjectAccepter : Activatable
         if(itemRef != null)
         {
             Toggle();
+            isActive = false;
         }
         itemRef = null;
         

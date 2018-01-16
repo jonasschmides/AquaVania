@@ -29,6 +29,7 @@ public abstract class Activatable : MonoBehaviour
     }
     public virtual void Toggle()
     {
+        isActive = !isActive;
         foreach (var i in toActivate)
         {
             Activatable j = (Activatable)i.GetComponent("Activatable");

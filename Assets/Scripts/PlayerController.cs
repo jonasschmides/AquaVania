@@ -34,6 +34,8 @@ public class PlayerController : MonoBehaviour
     private float airTime;
     private float timePerImage;
 
+    private bool _isTakingDamage; // Um Heilung zu blockieren
+
 
     //Audio
     public AudioSource audioSrc;
@@ -131,8 +133,11 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            airTime += Time.deltaTime * 4.5f;
-            airTime = Mathf.Min(airTime, maxAirTime);
+            if (!_isTakingDamage)
+            {
+                airTime += Time.deltaTime * 4.5f;
+                airTime = Mathf.Min(airTime, maxAirTime);
+            }
 
             _rigidBody.gravityScale = 0;
         }
@@ -204,6 +209,7 @@ public class PlayerController : MonoBehaviour
 
         if (isOver)
         {
+            GameController.Instance.reloadName = SceneManager.GetActiveScene().name;
             GameController.Instance.LoadLevel("GameOver");
         }
     }
@@ -220,14 +226,12 @@ public class PlayerController : MonoBehaviour
                 FishForm.SetActive(true);
                 FishCollider.SetActive(true);
                 HumanForm.SetActive(false);
-                //_rigidBody.velocity = new Vector2(_rigidBody.velocity.x * .5f, _rigidBody.velocity.y * .5f);
                 _rigidBody.drag = 3;
                 break;
             case MorphStatus.HUMAN:
                 FishForm.SetActive(false);
                 FishCollider.SetActive(false);
                 HumanForm.SetActive(true);
-                //
                 _rigidBody.drag = 8;
                 break;
         }
@@ -374,20 +378,10 @@ public class PlayerController : MonoBehaviour
 
             GameObject prevAccepterItem = _touchedAccepterRef.gameObject.GetComponent<ObjectAccepter>().GetItemRefBeforeRelease();
 
-
-
             _touchedAccepterRef.gameObject.GetComponent<ObjectAccepter>().Release();
             _touchedAccepterRef.gameObject.GetComponent<ObjectAccepter>().Hold(_carryRef);
 
-
-            if (_carryRef != null)
-            {
-
-            }
-
-
             _carryRef = prevAccepterItem;
-
 
         }
 
@@ -396,16 +390,15 @@ public class PlayerController : MonoBehaviour
             if (_carryRef == null)
             {
                 _carryRef = _touchedCarryableRef.gameObject;
-              
+
                 audioSrc.PlayOneShot(sfxGrabItem, 0.1f);
             }
             else
             {
-  
                 _carryRef = null;
             }
         }
- 
+
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -499,6 +492,7 @@ public class PlayerController : MonoBehaviour
 
         if (other.gameObject.CompareTag("DamageSource"))
         {
+            _isTakingDamage = false;
             hurtWarning.SetActive(false);
         }
     }
@@ -507,6 +501,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("DamageSource"))
         {
+            _isTakingDamage = true;
             //Debug.Log(Random.value);
             airTime -= 10f * Time.deltaTime;
             hurtWarning.SetActive(true);
