@@ -312,7 +312,7 @@ public class PlayerController : MonoBehaviour
 
     void DefaultHumanControls()
     {
-        if (Input.GetKey(KeyCode.Space) && _isGrounded)
+        if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.Space)) && _isGrounded)
         {
             animatorHuman.SetBool("jump", true);
             _isGrounded = false;
@@ -320,10 +320,12 @@ public class PlayerController : MonoBehaviour
             audioSrc.Stop();
             if (humanJumpHeightBase == humanJumpHeightCurrent)
             {
+                audioSrc.pitch = Random.Range(0.95f, 1.15f);
                 audioSrc.PlayOneShot(sfxJump, 0.2f);
             }
             else
             {
+                audioSrc.pitch = 1.0f;
                 audioSrc.PlayOneShot(sfxBoostJump, 0.4f);
             }
         }
