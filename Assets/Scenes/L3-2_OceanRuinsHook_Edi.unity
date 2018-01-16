@@ -4979,7 +4979,7 @@ Prefab:
     - target: {fileID: 114282072782125132, guid: 323814199a9ae0745bfbb66b07272ba6,
         type: 2}
       propertyPath: m_Text
-      value: Ocean Surface 2-2
+      value: Ocean Ruins 2-2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 323814199a9ae0745bfbb66b07272ba6, type: 2}
@@ -8654,7 +8654,7 @@ Prefab:
     - target: {fileID: 114759371905121014, guid: d8f6c89707bab7b40a4d58e3c5851e04,
         type: 2}
       propertyPath: LevelName
-      value: L2-3_OceanSurfaceMaze_Edi
+      value: L3-3_OceanRuinsMaze_Edi
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d8f6c89707bab7b40a4d58e3c5851e04, type: 2}

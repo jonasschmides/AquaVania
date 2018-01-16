@@ -13,7 +13,7 @@ public class GameController : MonoBehaviour
     public AudioSource bgmSrc;
 
     public AudioClip GameOverSound;
-    public AudioClip W1BGM, W2BGM, W3BGM;
+    public AudioClip W1BGM, W2BGM, W3BGM, W4BGM;
 
 
     public float warpX, warpY;
@@ -93,6 +93,10 @@ public class GameController : MonoBehaviour
         else if (levelPath.StartsWith("L3-"))
         {
             newClip = W3BGM;
+        }
+        else if (levelPath.StartsWith("L4-"))
+        {
+            newClip = W4BGM;
         }
 
         if (bgmSrc.clip != newClip && levelPath != "MainMenu")
