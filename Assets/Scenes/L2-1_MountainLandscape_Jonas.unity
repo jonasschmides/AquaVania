@@ -7045,7 +7045,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 737899140}
-  minX: -14
+  minX: -6.2
   minY: -10
   maxX: 0
   maxY: 0
