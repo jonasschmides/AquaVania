@@ -325,7 +325,7 @@ public class PlayerController : MonoBehaviour
             if (humanJumpHeightBase == humanJumpHeightCurrent)
             {
                 audioSrc.pitch = Random.Range(0.95f, 1.15f);
-                audioSrc.PlayOneShot(sfxJump, 0.2f);
+                audioSrc.PlayOneShot(sfxJump, 0.18f);
             }
             else
             {
