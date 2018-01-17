@@ -98,7 +98,7 @@ public class PlayerController : MonoBehaviour
         //debug
         if (Application.isEditor && (GameObject.Find("GameController") == null))
         {
-            Debug.Log(SceneManager.GetActiveScene().name);
+            //Debug.Log(SceneManager.GetActiveScene().name);
             SceneManager.LoadScene("MainMenu");
         }
         //end debug
