@@ -58,6 +58,9 @@ ESC --	Back to menu / Quit game
 - EDI	1h    Improved fish jumping out of water, added Jonas' sprite renderer
 - EDI	2h		Added Air-mechanics (fish can't breathe outside of water), added UI to show air status
 - EDI	3h		Added additional levels, reworked gamecontroller singleton
+- EDI	3h		More level design, added jump pad, added smasher and heat currents
+- EDI	3h		Boss fight, tweaking player survivability, jellyfish escape
+- EDI	2h		Bugfixing, polishing
 
 
 ## Problems and Challenges
@@ -69,6 +72,11 @@ Solution: Stopped using interfaces - Abstract classes are the way to go!
 
 How do parameters get carried over to another scene?
 There are multiple solutions, but using a static object seemed convenient.
+
+
+How to tie UI to a player, even if the scene is destroyed.
+DontDestroyOnLoad isn't an option, because the startmenu doesn't require the ingame UI...
+I solved it by placing the UI container into the player, that way the reference can be saved across all prefabs.
 
 ## Resources, Sources, References and Links
 ### Links to all resources, sources you are using. 
