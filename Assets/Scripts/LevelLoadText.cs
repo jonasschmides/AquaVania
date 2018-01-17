@@ -29,7 +29,7 @@ public class LevelLoadText : MonoBehaviour
         }
         else
         {
-            recordTime = "Record time: " + "--m --.--s";
+            recordTime = "Record time: " + "-";
         }
 
     }
