@@ -8,7 +8,7 @@ polluting the sea, utilizing the skills of fish and human forms alike!
 Eduard Pranz		if17b025
 
 
-Jonas Schmidbauer	ifXX_YYY
+Jonas Schmidbauer	if15b051
 
 ## Controls
 WASD --	Basic Movement
@@ -54,7 +54,11 @@ ESC --	Back to menu / Quit game
 - EDI   3h    Recording more SFX, implementing audio mixer
 - EDI   2h    Code Refactoring, Level "warping", Level title / subtitle / hints
 - EDI	2h    Added sound mixer, another background track and a gameover SFX
-- JONAS ??		Animation, Background rendering
+- JONAS 10h	Animation and Graphics
+- JONAS 12h Shader(learning and coding)
+- JONAS 7h  Leveldesign(L2-1, L2-2)
+- JONAS 13h Creating and Rendering sceen sprites and Prefab Objects
+- JONAS 7h  scripting
 - EDI	1h    Improved fish jumping out of water, added Jonas' sprite renderer
 - EDI	2h		Added Air-mechanics (fish can't breathe outside of water), added UI to show air status
 - EDI	3h		Added additional levels, reworked gamecontroller singleton
