@@ -289,11 +289,11 @@ public class PlayerController : MonoBehaviour
 
         }
 
-        if (Input.GetKey(KeyCode.Space))
+        /*if (Input.GetKey(KeyCode.Space))
         {
             if (canSpeakUnderwater) { Debug.Log("I am a fish."); }
             else { Debug.Log("Blub."); }
-        }
+        }*/
 
         if (Input.GetKeyDown(KeyCode.E))
         {

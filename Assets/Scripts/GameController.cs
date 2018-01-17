@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Net;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -35,13 +37,50 @@ public class GameController : MonoBehaviour
         }
         else
         {
-            times = new Dictionary<string, float>(12);
+            if (PlayerPrefs.HasKey("scores") && PlayerPrefs.GetString("scores").Length > 0)
+            {
+                times = DeserializeHighscores(PlayerPrefs.GetString("scores"));
+            }
+            else
+            {
+                times = new Dictionary<string, float>();
+            }
         }
 
         Instance = this;
         DontDestroyOnLoad(this);
     }
 
+    public static string SerializeHighscores(Dictionary<string, float> highscoreDict)
+    {
+        string result = "";
+
+        foreach (KeyValuePair<string, float> t in times)
+        {
+            result += t.Key + "," + t.Value + ";";
+        }
+
+        return result;
+    }
+
+    public static Dictionary<string, float> DeserializeHighscores(string highscoreString)
+    {
+        Dictionary<string, float> result = new Dictionary<string, float>();
+
+        var kvSplit = highscoreString.Split(';');
+        foreach (string kv in kvSplit)
+        {
+            if (kv.Length < 1) continue;
+            var kvPair = kv.Split(',');
+            string key = kvPair[0];
+            float value;
+
+            if (!float.TryParse(kvPair[1], out value)) continue;
+            result.Add(key, value);
+        }
+
+        return result;
+    }
 
     // Update is called once per frame
     void Update()
@@ -99,6 +138,8 @@ public class GameController : MonoBehaviour
                     times[highscoreFor] = timePlayed;
                 }
             }
+            PlayerPrefs.SetString("scores", SerializeHighscores(times));
+            PlayerPrefs.Save();
         }
         timePlayed = 0;
 

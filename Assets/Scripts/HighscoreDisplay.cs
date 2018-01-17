@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class HighscoreDisplay : MonoBehaviour
 {
-
     public Text textOutput;
 
     // Use this for initialization
@@ -27,14 +26,7 @@ public class HighscoreDisplay : MonoBehaviour
     {
         var mins = (int)(seconds / 60);
         var secs = Mathf.Round(100*(seconds -60*mins))/100;
-        //var split = Mathf.Round(100*(seconds - mins * 60 - secs))/100;
 
-        return mins + "m " + secs+ "s";
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        return string.Format("{0}m {1:0.00}s",mins,secs);
     }
 }
