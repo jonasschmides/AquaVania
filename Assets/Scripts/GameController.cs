@@ -20,7 +20,7 @@ public class GameController : MonoBehaviour
 
     public string reloadName;
 
-    private static Dictionary<string, float> times;
+    private static SortedDictionary<string, float> times;
 
     public static GameController Instance
     {
@@ -43,7 +43,7 @@ public class GameController : MonoBehaviour
             }
             else
             {
-                times = new Dictionary<string, float>();
+                times = new SortedDictionary<string, float>();
             }
         }
 
@@ -51,7 +51,7 @@ public class GameController : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
-    public static string SerializeHighscores(Dictionary<string, float> highscoreDict)
+    public static string SerializeHighscores(SortedDictionary<string, float> highscoreDict)
     {
         string result = "";
 
@@ -63,9 +63,9 @@ public class GameController : MonoBehaviour
         return result;
     }
 
-    public static Dictionary<string, float> DeserializeHighscores(string highscoreString)
+    public static SortedDictionary<string, float> DeserializeHighscores(string highscoreString)
     {
-        Dictionary<string, float> result = new Dictionary<string, float>();
+        SortedDictionary<string, float> result = new SortedDictionary<string, float>();
 
         var kvSplit = highscoreString.Split(';');
         foreach (string kv in kvSplit)
@@ -187,7 +187,7 @@ public class GameController : MonoBehaviour
         SceneManager.LoadScene(levelToLoad);
     }
 
-    public static Dictionary<string, float> GetBestTimes()
+    public static SortedDictionary<string, float> GetBestTimes()
     {
         return times;
     }

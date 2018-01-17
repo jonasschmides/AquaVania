@@ -10,9 +10,15 @@ public class HighscoreDisplay : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        Dictionary<string, float> times = GameController.GetBestTimes();
+        SortedDictionary<string, float> times = GameController.GetBestTimes();
 
-        string result = "";
+        string result = "Player scores:\n";
+
+        if(times == null)
+        {
+            textOutput.text = result;
+            return;
+        }
 
         foreach (KeyValuePair<string, float> entry in times)
         {
