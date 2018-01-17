@@ -29,6 +29,8 @@ public class PlayerController : MonoBehaviour
     public float humanJumpHeightBase = 25f;
     private float humanJumpHeightCurrent;
 
+    public static float levelTime;
+    private bool _hasStarted;
 
     public float maxAirTime = 15f;
     private float airTime;
@@ -85,6 +87,9 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        _hasStarted = false;
+        levelTime = 0;
+
         timePerImage = maxAirTime / airMeter.Length;
         airTime = maxAirTime;
 
@@ -118,6 +123,13 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (Input.anyKey) _hasStarted = true;
+
+        if (_hasStarted)
+        {
+            levelTime += Time.deltaTime;
+        }
+
         CheckGameOver();
 
         _isGrounded = Physics2D.Linecast(transform.position, groundHuman.position, 1 << LayerMask.NameToLayer("Ground"));
@@ -325,7 +337,7 @@ public class PlayerController : MonoBehaviour
             if (humanJumpHeightBase == humanJumpHeightCurrent)
             {
                 audioSrc.pitch = Random.Range(0.95f, 1.15f);
-                audioSrc.PlayOneShot(sfxJump, 0.2f);
+                audioSrc.PlayOneShot(sfxJump, 0.18f);
             }
             else
             {
@@ -442,7 +454,9 @@ public class PlayerController : MonoBehaviour
 
             GameController.Instance.warpX = warpObj.warpX;
             GameController.Instance.warpY = warpObj.warpY;
-            GameController.Instance.LoadLevel(warpObj.LevelName);
+
+            var highscoreWorthy = warpObj.warpX == 0 && warpObj.warpY == 0;
+            GameController.Instance.LoadLevel(warpObj.LevelName, highscoreWorthy, SceneManager.GetActiveScene().name, levelTime);
         }
 
         if (other.gameObject.CompareTag("AcceptsObject")) _touchedAccepterRef = other.gameObject;
