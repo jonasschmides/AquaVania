@@ -47,9 +47,3 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/L4-3_FactoryFinale_Edi.unity
     guid: f8032a6d98921514eb25b0aab3bd3c4c
-  - enabled: 1
-    path: Assets/Scenes/Level1.unity
-    guid: e7c3ed4a159d34ed88e75d59447228f7
-  - enabled: 1
-    path: Assets/Scenes/Level_Jonas.unity
-    guid: b2473611615bc4f0a9085d75a1491e0f
