@@ -65,6 +65,7 @@ ESC --	Back to menu / Quit game
 - EDI	3h		More level design, added jump pad, added smasher and heat currents
 - EDI	3h		Boss fight, tweaking player survivability, jellyfish escape
 - EDI	2h		Bugfixing, polishing
+- EDI 2h    Highscore saving, building sources and submitting zip
 
 
 ## Problems and Challenges
