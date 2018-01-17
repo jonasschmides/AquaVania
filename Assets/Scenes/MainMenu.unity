@@ -1007,7 +1007,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Snow Mountains 2-1
+  m_Text: Snow Mountains 2-2
 --- !u!222 &217967193
 CanvasRenderer:
   m_ObjectHideFlags: 0
