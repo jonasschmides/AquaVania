@@ -9,15 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 15720d28d1c8b71409ee21236898e086
   - enabled: 1
-    path: Assets/Scenes/GameOver.unity
-    guid: c2fbfc2806821fa4b920938108309da5
-  - enabled: 1
-    path: Assets/Scenes/Controls.unity
-    guid: d7bd9b8a275bb86468958eb8eacf55da
-  - enabled: 1
-    path: Assets/Scenes/Credits.unity
-    guid: 1b6d51943799782438528f8bdc6124b8
-  - enabled: 1
     path: Assets/Scenes/L1-1_OceanTempleBasicMovement_Edi.unity
     guid: 96d1e76749dfe7246bc077be1813145c
   - enabled: 1
@@ -27,8 +18,11 @@ EditorBuildSettings:
     path: Assets/Scenes/L1-3_OceanTemplePuzzle_Edi.unity
     guid: df8529c9d95cfa54f9d53cb73833c4d3
   - enabled: 1
-    path: Assets/Scenes/L2-1.unity
+    path: Assets/Scenes/L2-1_MountainLandscape_Jonas.unity
     guid: f87b610ac534349409f299effaca53c3
+  - enabled: 1
+    path: Assets/Scenes/L2-2_MountainLandscape_Jonas.unity
+    guid: 683a61995a20a41b68d2849a05907070
   - enabled: 1
     path: Assets/Scenes/L3-1_OceanRuinsIntro_Edi.unity
     guid: e097cd42e135f9f46a53a18173288fa1
@@ -47,3 +41,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/L4-3_FactoryFinale_Edi.unity
     guid: f8032a6d98921514eb25b0aab3bd3c4c
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: 1b6d51943799782438528f8bdc6124b8
+  - enabled: 1
+    path: Assets/Scenes/GameOver.unity
+    guid: c2fbfc2806821fa4b920938108309da5
+  - enabled: 1
+    path: Assets/Scenes/Controls.unity
+    guid: d7bd9b8a275bb86468958eb8eacf55da
