@@ -28,6 +28,7 @@ public class GameController : MonoBehaviour
 
     void Awake()
     {
+        Screen.SetResolution(1024, 600, false);
         if (Instance != null)
         {
             Destroy(Instance.gameObject);
