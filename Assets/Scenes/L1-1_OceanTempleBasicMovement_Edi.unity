@@ -136,11 +136,8 @@ Transform:
   - {fileID: 292496121}
   - {fileID: 1329374042}
   - {fileID: 591205362}
-  - {fileID: 2081460822}
-  - {fileID: 835671371}
-  - {fileID: 1911798976}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &173696007
 Prefab:
@@ -270,7 +267,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -345,7 +342,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4783864297624316, guid: d8f6c89707bab7b40a4d58e3c5851e04, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114759371905121014, guid: d8f6c89707bab7b40a4d58e3c5851e04,
         type: 2}
@@ -546,68 +543,11 @@ Transform:
   m_PrefabParentObject: {fileID: 4367719202667874, guid: 82234459b34834493b7a7fc6daeb2195,
     type: 2}
   m_PrefabInternal: {fileID: 591205361}
---- !u!4 &835671371 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4247774906390400, guid: 323814199a9ae0745bfbb66b07272ba6,
-    type: 2}
-  m_PrefabInternal: {fileID: 1834782917}
 --- !u!4 &861315120 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4911799596097082, guid: fd1662295d69c4f68b9956488ac572ac,
     type: 2}
   m_PrefabInternal: {fileID: 1797292334}
---- !u!1001 &877262464
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4247774906390400, guid: 323814199a9ae0745bfbb66b07272ba6, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4247774906390400, guid: 323814199a9ae0745bfbb66b07272ba6, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4247774906390400, guid: 323814199a9ae0745bfbb66b07272ba6, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4247774906390400, guid: 323814199a9ae0745bfbb66b07272ba6, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4247774906390400, guid: 323814199a9ae0745bfbb66b07272ba6, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4247774906390400, guid: 323814199a9ae0745bfbb66b07272ba6, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4247774906390400, guid: 323814199a9ae0745bfbb66b07272ba6, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4247774906390400, guid: 323814199a9ae0745bfbb66b07272ba6, type: 2}
-      propertyPath: m_RootOrder
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114282072782125132, guid: 323814199a9ae0745bfbb66b07272ba6,
-        type: 2}
-      propertyPath: m_Text
-      value: Ocean Temple 1-1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114115435133805904, guid: 323814199a9ae0745bfbb66b07272ba6,
-        type: 2}
-      propertyPath: m_Text
-      value: You're still alive! Try to move (W A S D)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 323814199a9ae0745bfbb66b07272ba6, type: 2}
-  m_IsPrefabParent: 0
 --- !u!4 &932383827 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4911799596097082, guid: fd1662295d69c4f68b9956488ac572ac,
@@ -799,62 +739,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4911799596097082, guid: fd1662295d69c4f68b9956488ac572ac,
     type: 2}
   m_PrefabInternal: {fileID: 1562871693}
---- !u!1001 &1280939148
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1331598}
-    m_Modifications:
-    - target: {fileID: 4247774906390400, guid: 323814199a9ae0745bfbb66b07272ba6, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 7.437505
-      objectReference: {fileID: 0}
-    - target: {fileID: 4247774906390400, guid: 323814199a9ae0745bfbb66b07272ba6, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -6.2591805
-      objectReference: {fileID: 0}
-    - target: {fileID: 4247774906390400, guid: 323814199a9ae0745bfbb66b07272ba6, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4247774906390400, guid: 323814199a9ae0745bfbb66b07272ba6, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4247774906390400, guid: 323814199a9ae0745bfbb66b07272ba6, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4247774906390400, guid: 323814199a9ae0745bfbb66b07272ba6, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4247774906390400, guid: 323814199a9ae0745bfbb66b07272ba6, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4247774906390400, guid: 323814199a9ae0745bfbb66b07272ba6, type: 2}
-      propertyPath: m_RootOrder
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114282072782125132, guid: 323814199a9ae0745bfbb66b07272ba6,
-        type: 2}
-      propertyPath: m_Text
-      value: Ocean Temple 1-1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114115435133805904, guid: 323814199a9ae0745bfbb66b07272ba6,
-        type: 2}
-      propertyPath: m_Text
-      value: You're still alive! Try to move (W A S D)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1196427862404314, guid: 323814199a9ae0745bfbb66b07272ba6, type: 2}
-      propertyPath: m_Name
-      value: UI (2)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 323814199a9ae0745bfbb66b07272ba6, type: 2}
-  m_IsPrefabParent: 0
 --- !u!4 &1299052378 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4791770312071330, guid: f24830f524afe8645b820668eba3e838,
@@ -957,60 +841,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1458643751
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1331598}
-    m_Modifications:
-    - target: {fileID: 4247774906390400, guid: 323814199a9ae0745bfbb66b07272ba6, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 7.521204
-      objectReference: {fileID: 0}
-    - target: {fileID: 4247774906390400, guid: 323814199a9ae0745bfbb66b07272ba6, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0.5128197
-      objectReference: {fileID: 0}
-    - target: {fileID: 4247774906390400, guid: 323814199a9ae0745bfbb66b07272ba6, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4247774906390400, guid: 323814199a9ae0745bfbb66b07272ba6, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4247774906390400, guid: 323814199a9ae0745bfbb66b07272ba6, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4247774906390400, guid: 323814199a9ae0745bfbb66b07272ba6, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4247774906390400, guid: 323814199a9ae0745bfbb66b07272ba6, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4247774906390400, guid: 323814199a9ae0745bfbb66b07272ba6, type: 2}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114282072782125132, guid: 323814199a9ae0745bfbb66b07272ba6,
-        type: 2}
-      propertyPath: m_Text
-      value: Ocean Temple 1-1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114115435133805904, guid: 323814199a9ae0745bfbb66b07272ba6,
-        type: 2}
-      propertyPath: m_Text
-      value: You're still alive! Try to move (W A S D)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 323814199a9ae0745bfbb66b07272ba6, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1001 &1487136854
 Prefab:
   m_ObjectHideFlags: 0
@@ -1306,19 +1138,19 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1331598}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4247774906390400, guid: 323814199a9ae0745bfbb66b07272ba6, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 7.437505
+      value: 8.516301
       objectReference: {fileID: 0}
     - target: {fileID: 4247774906390400, guid: 323814199a9ae0745bfbb66b07272ba6, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -6.2591805
+      value: -6.7729
       objectReference: {fileID: 0}
     - target: {fileID: 4247774906390400, guid: 323814199a9ae0745bfbb66b07272ba6, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0.1
+      value: 0.10000038
       objectReference: {fileID: 0}
     - target: {fileID: 4247774906390400, guid: 323814199a9ae0745bfbb66b07272ba6, type: 2}
       propertyPath: m_LocalRotation.x
@@ -1338,30 +1170,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4247774906390400, guid: 323814199a9ae0745bfbb66b07272ba6, type: 2}
       propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114282072782125132, guid: 323814199a9ae0745bfbb66b07272ba6,
-        type: 2}
-      propertyPath: m_Text
-      value: Ocean Temple 1-1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114115435133805904, guid: 323814199a9ae0745bfbb66b07272ba6,
-        type: 2}
-      propertyPath: m_Text
-      value: You're still alive! Try to move (W A S D)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1196427862404314, guid: 323814199a9ae0745bfbb66b07272ba6, type: 2}
-      propertyPath: m_Name
-      value: UI (1)
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 323814199a9ae0745bfbb66b07272ba6, type: 2}
   m_IsPrefabParent: 0
---- !u!4 &1911798976 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4247774906390400, guid: 323814199a9ae0745bfbb66b07272ba6,
-    type: 2}
-  m_PrefabInternal: {fileID: 1280939148}
 --- !u!1001 &1966362778
 Prefab:
   m_ObjectHideFlags: 0
@@ -1488,11 +1301,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &2081460822 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4247774906390400, guid: 323814199a9ae0745bfbb66b07272ba6,
-    type: 2}
-  m_PrefabInternal: {fileID: 1458643751}
 --- !u!4 &2091936653 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4911799596097082, guid: fd1662295d69c4f68b9956488ac572ac,

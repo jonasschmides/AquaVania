@@ -19,7 +19,6 @@ public class GameController : MonoBehaviour
     public string reloadName;
 
     private static Dictionary<string, float> times;
-    private float _timePlayed;
 
     public static GameController Instance
     {
@@ -47,7 +46,6 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _timePlayed++;
         if (Input.GetKeyUp(KeyCode.Escape))
         {
             Scene curScene = SceneManager.GetActiveScene();
@@ -77,65 +75,75 @@ public class GameController : MonoBehaviour
     }
 
 
-
-    public void LoadLevel(string levelPath)
+    public void LoadLevel(string levelToLoad)
     {
+        LoadLevel(levelToLoad, false, "", 0f);
+    }
 
-        float oldValue;
-        if (times.TryGetValue(levelPath, out oldValue) && oldValue > _timePlayed)
+    public void LoadLevel(string levelToLoad, bool highscoreWorthy, string highscoreFor, float timePlayed)
+    {
+        if (highscoreWorthy)
         {
-            if (!times.ContainsKey(reloadName))
+            highscoreFor = highscoreFor.Split('_')[0];
+            float oldValue = 0;
+            times.TryGetValue(highscoreFor, out oldValue);
+
+            if (oldValue > timePlayed || oldValue == 0)
             {
-                times.Add(reloadName, _timePlayed);
-            }
-            else
-            {
-                times[reloadName] = _timePlayed;
+                if (!times.ContainsKey(highscoreFor))
+                {
+                    times.Add(highscoreFor, timePlayed);
+                }
+                else
+                {
+                    times[highscoreFor] = timePlayed;
+                }
             }
         }
-        _timePlayed = 0;
+        timePlayed = 0;
+
 
         //Debug.Log("loading: " + levelPath);
         var oldClip = bgmSrc.clip;
         var newClip = oldClip;
-        if (levelPath.StartsWith("MainMenu"))
+        if (levelToLoad.StartsWith("MainMenu"))
         {
             bgmSrc.Stop();
             newClip = W1BGM;
         }
-        else if (levelPath.StartsWith("GameOver"))
+        else if (levelToLoad.StartsWith("GameOver"))
         {
             bgmSrc.Stop();
             clickSrc.PlayOneShot(GameOverSound); //hackyhack
             newClip = null;
         }
-        else if (levelPath.StartsWith("Credits"))
+        else if (levelToLoad.StartsWith("Credits"))
         {
             newClip = null;
         }
-        else if (levelPath.StartsWith("L1-"))
+        else if (levelToLoad.StartsWith("L1-"))
         {
             newClip = W1BGM;
         }
-        else if (levelPath.StartsWith("L2-"))
+        else if (levelToLoad.StartsWith("L2-"))
         {
             newClip = W2BGM;
         }
-        else if (levelPath.StartsWith("L3-"))
+        else if (levelToLoad.StartsWith("L3-"))
         {
             newClip = W3BGM;
         }
-        else if (levelPath.StartsWith("L4-"))
+        else if (levelToLoad.StartsWith("L4-"))
         {
             newClip = W4BGM;
         }
 
-        if (bgmSrc.clip != newClip && levelPath != "MainMenu")
+        if (bgmSrc.clip != newClip && levelToLoad != "MainMenu")
         {
             bgmSrc.clip = newClip;
             bgmSrc.Play();
         }
-        SceneManager.LoadScene(levelPath);
+        SceneManager.LoadScene(levelToLoad);
     }
 
     public static Dictionary<string, float> GetBestTimes()
