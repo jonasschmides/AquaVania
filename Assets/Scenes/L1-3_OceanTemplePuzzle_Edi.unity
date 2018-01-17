@@ -661,6 +661,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114282072782125132, guid: 323814199a9ae0745bfbb66b07272ba6,
+        type: 2}
+      propertyPath: m_Text
+      value: Ocean Temple 1-3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114115435133805904, guid: 323814199a9ae0745bfbb66b07272ba6,
+        type: 2}
+      propertyPath: m_Text
+      value: Take energy capsules by pressing E
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 323814199a9ae0745bfbb66b07272ba6, type: 2}
   m_IsPrefabParent: 0
