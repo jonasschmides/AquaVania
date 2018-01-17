@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
-
     public AudioSource clickSrc;
 
     public GameObject bgm;
@@ -36,15 +35,8 @@ public class GameController : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(this);
-        //DontDestroyOnLoad(transform.gameObject);
-
     }
-    // Use this for initialization
-    void Start()
-    {
 
-        //Debug.Log("Welcome to AquaVania!");
-    }
 
     // Update is called once per frame
     void Update()
@@ -59,8 +51,6 @@ public class GameController : MonoBehaviour
                     Application.Quit();
                     break;
                 default:
-                    //Destroy(bgm);
-                    //Destroy(this);
                     LoadLevel("MainMenu");
                     break;
             }
